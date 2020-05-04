@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c378ae32-296b-4d51-b688-2c5ed5a566df" name="Default Changelist" comment="" />
+    <list default="true" id="c378ae32-296b-4d51-b688-2c5ed5a566df" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Tjener/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tjener/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tjener/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +19,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1bRnAnqXk3Ag1ERMo1YphJddRzw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -23,6 +32,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Tjener" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -52,6 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1588603632317</updated>
       <workItem from="1588603635826" duration="273000" />
+      <workItem from="1588604111003" duration="313000" />
     </task>
     <servers />
   </component>
@@ -63,6 +74,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="808" y="429" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588603670191" />
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1588604114449">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="740" y="295" key="FileChooserDialogImpl/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588604114449" />
     <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1588603910165">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
