@@ -17,7 +17,7 @@ public class Tjener {
                 DataInputStream in = new DataInputStream(new BufferedInputStream(connectedSocket.getInputStream()));
 
                 String line = in.readUTF();
-                handleMessage(line, connectedSocket);
+                handleMessage(line);
 
 
                 connectedSocket.close();
@@ -28,7 +28,7 @@ public class Tjener {
         }
     }
 
-    private void handleMessage(String msg, Socket client) throws IOException {
+    private void handleMessage(String msg) throws IOException {
         System.out.println("Msg: " + msg);
         respondToClient("Server heard: " + msg);
     }
