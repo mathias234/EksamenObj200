@@ -17,6 +17,7 @@ public class RegisteringsPane extends GridPane {
     Image image  = new Image(getClass().getResourceAsStream(
             "NettMatch3.png"));
     HBox kjonn = new HBox();
+    ToggleGroup kjønnToggleGroup;
 
     public RegisteringsPane(){
         fyllPane();
@@ -61,11 +62,13 @@ public class RegisteringsPane extends GridPane {
         setPadding(new Insets(20,20,20,20));
         m.setText("Mann    ");
         d.setText("Dame");
+        m.setUserData("mann");
+        d.setUserData("dame");
         txtInteresser.setMaxWidth(300);
         txtInteresser.setMaxHeight(100);
-        ToggleGroup tg = new ToggleGroup();
-        m.setToggleGroup(tg);
-        d.setToggleGroup(tg);
+        kjønnToggleGroup = new ToggleGroup();
+        m.setToggleGroup(kjønnToggleGroup);
+        d.setToggleGroup(kjønnToggleGroup);
 
         add(lugo, 0,1, 2, 1);
         add(navn, 0, 2);
