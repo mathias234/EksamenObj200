@@ -28,6 +28,4 @@ public class MatchPane extends BorderPane {
         antMatch.getChildren().addAll(mtch, txt, oppdaterBtn);
         setTop(antMatch);
     }
-
-
 }
