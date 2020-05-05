@@ -22,6 +22,7 @@ public class Tjener {
                 DataInputStream in = new DataInputStream(new BufferedInputStream(connectedSocket.getInputStream()));
 
                 String line = in.readUTF();
+                System.out.println("Fikk melding: " + line);
                 handleMessage(line);
 
 

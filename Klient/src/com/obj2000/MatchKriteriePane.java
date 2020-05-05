@@ -29,6 +29,7 @@ public class MatchKriteriePane extends GridPane {
     RadioButton m = new RadioButton(), d = new RadioButton();
     HBox oppe = new HBox(), nede = new HBox(), kjonn = new HBox();
 
+    ToggleGroup kjønnToggleGroup;
 
     public MatchKriteriePane() {
         opprettPane();
@@ -70,10 +71,11 @@ public class MatchKriteriePane extends GridPane {
         slider2.setMajorTickUnit(10f);
 
         //finn.setMaxSize(250, 100);
-        ToggleGroup tg = new ToggleGroup();
-        m.setToggleGroup(tg);
-        d.setToggleGroup(tg);
-
+        kjønnToggleGroup = new ToggleGroup();
+        m.setToggleGroup(kjønnToggleGroup);
+        d.setToggleGroup(kjønnToggleGroup);
+        m.setUserData("mann");
+        d.setUserData("dame");
 
 
         txt2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));

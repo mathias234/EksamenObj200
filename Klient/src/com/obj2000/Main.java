@@ -2,15 +2,16 @@ package com.obj2000;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Main extends Application {
-    Stage vindu;
-    Scene scene1;
-    Klient klient;
+    private Klient klient;
+    private String minId;
+
+    private Stage vindu;
+    private Scene scene1;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -37,6 +38,17 @@ public class Main extends Application {
         hovedScene.bt2.setOnAction(e -> vindu.setScene(besøkendePane.getScene()));
 
 
+        hovedScene.matchPane.oppdaterBtn.setOnAction(e -> {
+            try {
+                klient.sendMessage("matcher!" + minId + "!" +
+                        (int)hovedScene.mkp.slider.getValue() + "!" +
+                        (int)hovedScene.mkp.slider2.getValue() + "!" +
+                        (String)hovedScene.mkp.kjønnToggleGroup.getSelectedToggle().getUserData());
+            } catch(IOException ex) {
+                System.out.println("Oppdatering feilet\n"+ex);
+            }
+        });
+
         vindu.setTitle("NettMatch");
         vindu.setScene(scene1);
         vindu.show();
@@ -53,9 +65,8 @@ public class Main extends Application {
         String tlf = pane.txtTlf.getText();
 
         klient.sendMessage("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf);
-        String id = klient.receiveMessage();
+        minId = klient.receiveMessage();
         // Skriv denne iden til tekst filen
-
     }
 
 
