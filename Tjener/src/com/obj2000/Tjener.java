@@ -96,7 +96,6 @@ public class Tjener {
         for(Bruker match : matcher){
 
         }
-
     }
 
     private double interesseMatch(String[] matchInteresser, String[] brukerInteresser){

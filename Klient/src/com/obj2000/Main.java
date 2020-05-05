@@ -40,10 +40,17 @@ public class Main extends Application {
 
         hovedScene.matchPane.oppdaterBtn.setOnAction(e -> {
             try {
+                String fraAlder = "" + (int)hovedScene.mkp.slider.getValue();
+                String tilAlder = "" + (int)hovedScene.mkp.slider2.getValue();
+
+                String kjønn = "mann";
+                if(hovedScene.mkp.kjønnToggleGroup.getSelectedToggle() != null)
+                    kjønn = (String)hovedScene.mkp.kjønnToggleGroup.getSelectedToggle().getUserData();
+
                 klient.sendMessage("matcher!" + minId + "!" +
-                        (int)hovedScene.mkp.slider.getValue() + "!" +
-                        (int)hovedScene.mkp.slider2.getValue() + "!" +
-                        (String)hovedScene.mkp.kjønnToggleGroup.getSelectedToggle().getUserData());
+                        fraAlder + "!" +
+                        tilAlder + "!" +
+                        kjønn);
             } catch(IOException ex) {
                 System.out.println("Oppdatering feilet\n"+ex);
             }
