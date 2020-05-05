@@ -115,12 +115,10 @@ public class DatabaseKontroller {
 
                 while (rs.next()) {
                         data = rs.getString("bNr") + "!"
-                            + rs.getString("navn") + "!"
-                            + rs.getString("alder") + "!"
                             + rs.getString("kjønn") + "!"
+                            + rs.getString("alder") + "!"
                             + rs.getString("interesser") + "!"
-                            + rs.getString("bosted") + "!"
-                            + rs.getString("tlf");
+                            + rs.getString("bosted");
                 }
 
                 conn.close();
@@ -193,6 +191,33 @@ public class DatabaseKontroller {
         }
 
         return matcher;
+    }
+
+    /**
+     * @param id //bruker id
+     * @return // String med navn og tlf
+     */
+    public String hentNavnOgTlf(String id){
+        String data = "";
+        String sql =  "SELECT navn, tlf FROM bruker \n"
+                + "WHERE bNr = '" + id + "'";
+
+        try {
+            conn = DriverManager.getConnection(this.url);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                data = rs.getString("navn") + "!"
+                        + rs.getString("tlf");
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+
+        return data;
     }
 
     /**

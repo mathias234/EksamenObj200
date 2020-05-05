@@ -118,6 +118,7 @@ public class Tjener {
         }
 
         matcher.sort(Comparator.comparingDouble(Bruker::getScore));
+        System.out.println(matcher.toString());
 
         if(matcher.size() > 10)
             matcher.subList(10, matcher.size()).clear();
@@ -133,7 +134,7 @@ public class Tjener {
     private void regnMatchScore(Bruker match, Bruker bruker){
         System.out.println("matchScore");
         double score = 0;
-        double aldersVekt = 0.2;
+        double aldersVekt = 0.1;
         double bostedVekt = 10;
 
         double bAlder = Double.parseDouble(bruker.getAlder());
@@ -153,9 +154,8 @@ public class Tjener {
     }
 
     private double interesseMatch(String[] matchInteresser, String[] brukerInteresser){
-        System.out.println("interessematch");
         double score = 0;
-        double interesseVekt = 5;
+        double interesseVekt = 15;
 
         for(int i = 0; i < brukerInteresser.length; i++)
             for(int j = 0; j < matchInteresser.length; j++){
@@ -168,7 +168,6 @@ public class Tjener {
     }
 
     private ArrayList<Bruker> parseMatchListe(ArrayList<String> brukerData){
-        System.out.println("matchliste");
         ArrayList<Bruker> brukerListe = new ArrayList<>();
         for(String s : brukerData){
             brukerListe.add(stringTilBruker(s));
