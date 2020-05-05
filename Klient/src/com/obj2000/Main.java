@@ -2,9 +2,13 @@ package com.obj2000;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main extends Application {
     private Klient klient;
@@ -19,15 +23,25 @@ public class Main extends Application {
         klient = new Klient("127.0.0.1", 5000);
 
         RegisteringsPane registeringsPane = new RegisteringsPane();
-        MatchKriteriePane matchKriteriePane = new MatchKriteriePane();
         HovedScene hovedScene = new HovedScene();
         BesøkendePane besøkendePane = new BesøkendePane();
 
         scene1 = new Scene(registeringsPane, 400, 500);
 
+        File idFile = new File("minid.txt");
+
         registeringsPane.registrer.setOnAction(e -> {
             try {
                 register(registeringsPane);
+
+                idFile.delete();
+
+                if(idFile.createNewFile()) {
+                    FileWriter writer = new FileWriter(idFile);
+                    writer.write(minId);
+                    writer.close();
+                }
+
                 vindu.setScene(hovedScene.getScene());
             } catch (IOException ex) {
                 System.out.println("Feil i registrering, prøv igjen\n"+ex);
@@ -51,13 +65,43 @@ public class Main extends Application {
                         fraAlder + "!" +
                         tilAlder + "!" +
                         kjønn);
+
+                String msg = klient.receiveMessage();
+                System.out.println(msg);
             } catch(IOException ex) {
                 System.out.println("Oppdatering feilet\n"+ex);
             }
         });
 
         vindu.setTitle("NettMatch");
-        vindu.setScene(scene1);
+
+
+        if(idFile.exists()) {
+            Scanner idScanner = new Scanner(idFile);
+            if(idScanner.hasNextLine()) {
+                minId = idScanner.nextLine();
+            }
+
+            // Spør serveren om id er valid
+            klient.sendMessage("sjekkid!" + minId);
+
+            if(klient.receiveMessage().equals("1")) {
+                // Åpne hoved scenen
+                vindu.setScene(hovedScene.getScene());
+            }
+            else {
+                // Iden finnes ikke, så brukeren må lage en ny
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Lagret bruker finnes ikke i databasen");
+                alert.setContentText("Lagret bruker finnes ikke i databasen, du må lage en ny");
+                alert.showAndWait();
+                vindu.setScene(scene1);
+            }
+        }
+        else {
+            vindu.setScene(scene1);
+        }
+
         vindu.show();
     }
 
@@ -73,7 +117,6 @@ public class Main extends Application {
 
         klient.sendMessage("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf);
         minId = klient.receiveMessage();
-        // Skriv denne iden til tekst filen
     }
 
 

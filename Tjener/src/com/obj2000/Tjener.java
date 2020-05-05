@@ -46,6 +46,9 @@ public class Tjener {
         else if(tokens[0].equals("takontakt")) {
             parseTaKontakt(tokens);
         }
+        else if(tokens[0].equals("sjekkid")) {
+            parseSjekkId(tokens);
+        }
     }
 
     private void parseRegister(String[] argumenter) throws IOException {
@@ -84,6 +87,17 @@ public class Tjener {
         String bruker = dbKontroller.hentEnBruker(tilBrukerId);
 
         respondToClient(bruker);
+    }
+
+    private void parseSjekkId(String[] argumenter) throws IOException {
+        String id = argumenter[1];
+
+        String bruker = dbKontroller.hentEnBruker(id);
+
+        if(bruker.equals(""))
+            respondToClient("0");
+        else
+            respondToClient("1");
     }
 
     private void respondToClient(String msg) throws IOException {
