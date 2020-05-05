@@ -98,7 +98,37 @@ public class DatabaseKontroller {
             e.getMessage();
         }
     }
+    
+    /**
+     * @param id // id til bruker
+     * @return // String med bruker
+     */
+    public String hentEnBruker(String id){
+            String data = "";
+            String sql =  "SELECT * FROM bruker \n"
+                    + "WHERE bNr = " + id;
 
+            try {
+                conn = DriverManager.getConnection(this.url);
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                        data = rs.getString("navn") + "-"
+                            + rs.getString("kjønn") + "-"
+                            + rs.getString("alder") + "-"
+                            + rs.getString("interesser") + "-"
+                            + rs.getString("bosted") + "-"
+                            + rs.getString("tlf");
+                }
+
+                conn.close();
+            } catch (SQLException e) {
+                e.getMessage();
+            }
+            return data;
+        }
+    
     /**
      * @param id // id'en til brukeren som ønsker å vite hvem som har informasjon om vedkommende
      * @return // Arraylist med resultater
