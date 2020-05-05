@@ -20,11 +20,12 @@ public class Main extends Application {
         scene1 = new Scene(registeringsPane, 400, 500);
 
 
-        registeringsPane.registrer.setOnAction(e -> vindu.setScene(matchKriteriePane.getScene()));
-        matchKriteriePane.finn.setOnAction(e -> vindu.setScene(hovedScene.getScene()));
+        registeringsPane.registrer.setOnAction(e -> vindu.setScene(hovedScene.getScene()));
+        //matchKriteriePane.finn.setOnAction(e -> vindu.setScene(hovedScene.getScene()));
         hovedScene.bt2.setOnAction(e -> vindu.setScene(besøkendePane.getScene()));
 
-        vindu.setTitle("Tinder_2.0");
+
+        vindu.setTitle("NettMatch");
         vindu.setScene(scene1);
         vindu.show();
     }

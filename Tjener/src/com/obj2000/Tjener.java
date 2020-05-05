@@ -47,7 +47,6 @@ public class Tjener {
     }
 
     private void parseRegister(String[] argumenter) throws IOException {
-        // String bNr, String navn, String kjønn, String alder, String interesser, String bosted, String tlf)
         UUID uuid = UUID.randomUUID();
         String bNr = uuid.toString();
         String navn =  argumenter[1];
@@ -68,7 +67,7 @@ public class Tjener {
         String kjønn = argumenter[4];
 
         // Magisk system som matcher basert på parameterene
-        String matches = "matcher-id-dame-22-ingen-bosted-id-dame-23--ingen-bosted2";
+        String matches = "matcher-id-dame-22-ingen-bosted-id-dame-23-ingen-bosted2";
 
         respondToClient(matches);
     }

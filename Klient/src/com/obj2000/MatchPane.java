@@ -1,23 +1,35 @@
 package com.obj2000;
 
+
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 public class MatchPane extends BorderPane {
-    Label test;
     Button bt3, bt4;
     HBox antMatch;
+    HBox logo;
     TextField txt = new TextField("10");
-    Label mtch = new Label("Matcher");
+    Text mtch = new Text("Antall matcher: ");
 
     public MatchPane(){
-        bt3 = new Button("Opp");
-        bt4 = new Button("Ned");
+
+        bt3 = new Button("Oppdater");
+
+        txt.setPrefColumnCount(3);
+        mtch.setStyle("-fx-font-size: 13px;-fx-font-weight:bold;-fx-padding:10px;");
+
         antMatch = new HBox();
-        antMatch.getChildren().addAll(bt3, bt4, txt, mtch);
+        antMatch.setSpacing(10);
+        antMatch.setPadding(new Insets(10, 0,10,65));
+        antMatch.setStyle("-fx-border-color: black;-fx-border-width: 0 0 3 0;");
+        antMatch.getChildren().addAll(mtch, txt, bt3);
         setTop(antMatch);
     }
 

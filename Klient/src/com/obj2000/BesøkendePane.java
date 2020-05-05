@@ -1,4 +1,3 @@
-
 package com.obj2000;
 
 import javafx.geometry.Insets;
@@ -10,7 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
-public class BesøkendePane extends Pane {
+public class BesøkendePane extends BorderPane {
+
 
     public BesøkendePane(){
 
