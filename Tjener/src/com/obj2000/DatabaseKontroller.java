@@ -114,11 +114,12 @@ public class DatabaseKontroller {
                 ResultSet rs = stmt.executeQuery(sql);
 
                 while (rs.next()) {
-                        data = rs.getString("navn") + "-"
-                            + rs.getString("kjønn") + "-"
-                            + rs.getString("alder") + "-"
-                            + rs.getString("interesser") + "-"
-                            + rs.getString("bosted") + "-"
+                        data = rs.getString("bNr") + "!"
+                            + rs.getString("navn") + "!"
+                            + rs.getString("alder") + "!"
+                            + rs.getString("kjønn") + "!"
+                            + rs.getString("interesser") + "!"
+                            + rs.getString("bosted") + "!"
                             + rs.getString("tlf");
                 }
 
@@ -177,12 +178,11 @@ public class DatabaseKontroller {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                String data = rs.getString("navn") + " "
-                        + rs.getString("kjønn") + " "
-                        + rs.getString("alder") + " "
-                        + rs.getString("interesser") + " "
-                        + rs.getString("bosted") + " "
-                        + rs.getString("tlf");
+                String data = rs.getString("id") + "!"
+                        + rs.getString("kjønn") + "!"
+                        + rs.getString("alder") + "!"
+                        + rs.getString("interesser") + "!"
+                        + rs.getString("bosted");
                 matcher.add(data);
             }
 

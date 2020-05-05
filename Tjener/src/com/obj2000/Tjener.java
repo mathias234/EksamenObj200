@@ -1,7 +1,9 @@
 package com.obj2000;
 
+import java.lang.reflect.Array;
 import java.net.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Tjener {
@@ -86,4 +88,51 @@ public class Tjener {
         DataOutputStream out = new DataOutputStream(connectedSocket.getOutputStream());
         out.writeUTF(msg);
     }
+
+    private void finnBesteMatcher(ArrayList<String> matchData, String brukerData){
+        ArrayList<Bruker> matcher = parseMatchListe(matchData);
+        Bruker bruker = stringTilBruker(brukerData);
+
+        for(Bruker match : matcher){
+
+        }
+
+    }
+
+    private double interesseMatch(String[] matchInteresser, String[] brukerInteresser){
+        double score = 0;
+        double interesseVekt = 5;
+
+        for(int i = 0; i < brukerInteresser.length; i++)
+            for(int j = 0; j < matchInteresser.length; j++){
+
+                if(brukerInteresser[i].equals(matchInteresser[j]))
+                    score += interesseVekt;
+            }
+
+        return score;
+    }
+
+    private ArrayList<Bruker> parseMatchListe(ArrayList<String> brukerData){
+        ArrayList<Bruker> brukerListe = new ArrayList<>();
+        for(String s : brukerData){
+            brukerListe.add(stringTilBruker(s));
+        }
+
+        return brukerListe;
+    }
+
+    private Bruker stringTilBruker(String brukerData){
+        Bruker bruker = new Bruker();
+        String[] dataArr = brukerData.split("!");
+
+        bruker.setId(dataArr[0]);
+        bruker.setKjønn(dataArr[1]);
+        bruker.setAlder(dataArr[2]);
+        bruker.setInteresser(dataArr[3]);
+        bruker.setBosted(dataArr[4]);
+
+        return bruker;
+    }
+
 }
