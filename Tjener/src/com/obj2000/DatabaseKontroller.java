@@ -134,11 +134,11 @@ public class DatabaseKontroller {
      * @param id // id'en til brukeren som ønsker å vite hvem som har informasjon om vedkommende
      * @return // Arraylist med resultater
      */
-    public ArrayList<String> hvemHarInfoOmMeg(int id) {
+    public ArrayList<String> hvemHarInfoOmMeg(String id) {
         ArrayList<String> resultater = new ArrayList<>();
         String sql = " SELECT navn, alder, bosted FROM bruker AS b, logg AS l \n"
-                + " WHERE l.infoFraBruker_id = " + id
-                + " AND bNr = l.infoTilBruker_id";
+                + " WHERE l.infoFraBruker_id = '" + id
+                + "' AND bNr = l.infoTilBruker_id";
 
         try {
             conn = DriverManager.getConnection(this.url);
@@ -165,11 +165,12 @@ public class DatabaseKontroller {
      * @param kjønn // kjønn (mann eller kvinne)
      * @return // ArrayList med resultater
      */
-    public ArrayList<String> finnMatcher(int fraAlder, int tilAlder, String kjønn){
-
+    public ArrayList<String> finnMatcher(String fraAlder, String tilAlder, String kjønn){
+        int min = Integer.parseInt(fraAlder);
+        int max = Integer.parseInt(tilAlder);
         ArrayList<String> matcher = new ArrayList<>();
         String sql =  "SELECT * FROM bruker \n"
-                    + "WHERE (alder BETWEEN " + fraAlder + " AND " + tilAlder + ")"
+                    + "WHERE (alder BETWEEN " + min + " AND " + max + ")"
                     + "AND kjønn = '" + kjønn + "'";
 
         try {
@@ -178,7 +179,7 @@ public class DatabaseKontroller {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                String data = rs.getString("id") + "!"
+                String data = rs.getString("bNr") + "!"
                         + rs.getString("kjønn") + "!"
                         + rs.getString("alder") + "!"
                         + rs.getString("interesser") + "!"

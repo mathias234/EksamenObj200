@@ -26,7 +26,15 @@ public class Bruker {
             return interesser;
         }
 
-        public String getBosted() {
+        public String getId() {
+            return id;
+        }
+
+        public double getScore() {
+            return score;
+        }
+
+    public String getBosted() {
             return bosted;
         }
         public void setId(String id) {

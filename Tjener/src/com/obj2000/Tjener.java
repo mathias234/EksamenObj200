@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.UUID;
 
 public class Tjener {
@@ -67,10 +68,11 @@ public class Tjener {
         String tilAlder = argumenter[3];
         String kjønn = argumenter[4];
 
-        // Magisk system som matcher basert på parameterene
-        String matches = "matcher-id-dame-22-ingen-bosted-id-dame-23-ingen-bosted2";
 
-        respondToClient(matches);
+        ArrayList<String> data = dbKontroller.finnMatcher(fraAlder, tilAlder, kjønn);
+        String tilKlient = finnBesteMatcher(data, fraBrukerId);
+        System.out.println(tilKlient);
+        respondToClient(tilKlient);
     }
 
     private void parseTaKontakt(String[] argumenter) throws IOException {
@@ -89,17 +91,55 @@ public class Tjener {
         out.writeUTF(msg);
     }
 
-    private void finnBesteMatcher(ArrayList<String> matchData, String brukerData){
+    private String finnBesteMatcher(ArrayList<String> matchData, String brukerId){
+
         ArrayList<Bruker> matcher = parseMatchListe(matchData);
-        Bruker bruker = stringTilBruker(brukerData);
+
+        String brukerData = dbKontroller.hentEnBruker(brukerId);
+
+        Bruker bruker = stringTilBruker(brukerData); //bruke string[] istedenfor object?
 
         for(Bruker match : matcher){
-
+            regnMatchScore(match, bruker);
         }
+
+        matcher.sort(Comparator.comparingDouble(Bruker::getScore));
+
+        if(matcher.size() > 10)
+            matcher.subList(10, matcher.size()).clear();
+
+
+        String ut = "";
+        for(Bruker b : matcher)
+            ut += "#" + b.toString();
+
+        return ut;
+    }
+
+    private void regnMatchScore(Bruker match, Bruker bruker){
+        System.out.println("matchScore");
+        double score = 0;
+        double aldersVekt = 0.2;
+        double bostedVekt = 10;
+
+        double bAlder = Double.parseDouble(bruker.getAlder());
+        String[] brukerInteresser = bruker.getInteresser().split("\\s*(,|\\s)\\s*");
+
+        String[] matchInteresser = match.getInteresser().split("\\s*(,|\\s)\\s*");
+        score += interesseMatch(matchInteresser, brukerInteresser);
+
+        double mAlder = Double.parseDouble(match.getAlder());
+        score -= Math.abs(mAlder - bAlder) * aldersVekt;
+
+        if(match.getBosted().equals(bruker.getBosted()))
+            score += bostedVekt;
+
+        match.setScore(score);
 
     }
 
     private double interesseMatch(String[] matchInteresser, String[] brukerInteresser){
+        System.out.println("interessematch");
         double score = 0;
         double interesseVekt = 5;
 
@@ -114,6 +154,7 @@ public class Tjener {
     }
 
     private ArrayList<Bruker> parseMatchListe(ArrayList<String> brukerData){
+        System.out.println("matchliste");
         ArrayList<Bruker> brukerListe = new ArrayList<>();
         for(String s : brukerData){
             brukerListe.add(stringTilBruker(s));
@@ -123,6 +164,7 @@ public class Tjener {
     }
 
     private Bruker stringTilBruker(String brukerData){
+
         Bruker bruker = new Bruker();
         String[] dataArr = brukerData.split("!");
 
