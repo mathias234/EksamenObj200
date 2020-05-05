@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c378ae32-296b-4d51-b688-2c5ed5a566df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/obj2000/Klient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/obj2000/Klient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tjener/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tjener/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tjener/Tjener.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tjener/Tjener.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tjener/src/com/obj2000/DatabaseKontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tjener/src/com/obj2000/DatabaseKontroller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tjener/src/com/obj2000/Tjener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tjener/src/com/obj2000/Tjener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +65,7 @@
       <updated>1588603632317</updated>
       <workItem from="1588603635826" duration="273000" />
       <workItem from="1588604111003" duration="313000" />
-      <workItem from="1588676696334" duration="3739000" />
+      <workItem from="1588676696334" duration="4603000" />
     </task>
     <servers />
   </component>

@@ -33,13 +33,14 @@ public class Tjener {
 
     private void handleMessage(String msg) throws IOException {
         String[] tokens = msg.split("-");
-        System.out.println("handleMessage");
         if(tokens[0].equals("register")) {
-            System.out.println("register");
             parseRegister(tokens);
         }
         else if(tokens[0].equals("matcher")) {
             parseMatcher(tokens);
+        }
+        else if(tokens[0].equals("takontakt")) {
+            parseTaKontakt(tokens);
         }
     }
 
@@ -54,13 +55,27 @@ public class Tjener {
         String bosted = argumenter[5];
         String tlf = argumenter[6];
         dbKontroller.opprettBruker(bNr, navn, kjønn, alder, interesser, bosted, tlf);
-        System.out.println("parseRegister");
-        respondToClient(uuid.toString());
 
+        respondToClient(uuid.toString());
     }
 
     private void parseMatcher(String[] argumenter) throws IOException {
+        String fraBrukerId = argumenter[1];
+        String fraAlder = argumenter[2];
+        String tilAlder = argumenter[3];
+        String kjønn = argumenter[4];
 
+        // Magisk system som matcher basert på parameterene
+        String matches = "matcher-id-dame-22-ingen-bosted-id-dame-23--ingen-bosted2";
+
+        respondToClient(matches);
+    }
+
+    private void parseTaKontakt(String[] argumenter) throws IOException {
+        String fraBrukerId = argumenter[1];
+        String tilBrukerId = argumenter[2];
+
+        respondToClient("");
     }
 
     private void respondToClient(String msg) throws IOException {
