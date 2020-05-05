@@ -18,7 +18,7 @@ public class DatabaseKontroller {
     private void opprettDB() {
 
         String sql1 = "CREATE TABLE IF NOT EXISTS bruker ( \n"
-                + "    bNr INTEGER PRIMARY KEY NOT NULL, \n"
+                + "    bNr varchar(36) PRIMARY KEY NOT NULL, \n"
                 + "    navn varchar(25) NOT NULL, \n"
                 + "    kjønn varchar(6) NOT NULL, \n"
                 + "    alder INTEGER NOT NULL, \n"
