@@ -28,6 +28,4 @@ public class Klient {
         socket.close();
         return message;
     }
-
-
 }
