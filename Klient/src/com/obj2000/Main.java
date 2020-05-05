@@ -1,26 +1,39 @@
 package com.obj2000;
 
-import java.io.IOException;
-import java.net.UnknownHostException;
-import java.util.Scanner;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
-    public static void main(String[] args) throws UnknownHostException, IOException {
-        Klient client = new Klient("127.0.0.1", 5000);
+public class Main extends Application {
+    Stage vindu;
+    Scene scene1;
 
-        System.out.println("Ready");
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        vindu = primaryStage;
 
-        Scanner sc = new Scanner(System.in);
+        RegisteringsPane registeringsPane = new RegisteringsPane();
+        MatchKriteriePane matchKriteriePane = new MatchKriteriePane();
+        HovedScene hovedScene = new HovedScene();
+        BesøkendePane besøkendePane = new BesøkendePane();
 
-        String line = "";
-        while (!line.equals("exit")) {
-            line = sc.nextLine();
-            if (!line.isEmpty()) {
-                client.sendMessage(line);
-                System.out.println(client.receiveMessage());
-            }
-        }
+        scene1 = new Scene(registeringsPane, 400, 500);
 
-        sc.close();
+
+        registeringsPane.registrer.setOnAction(e -> vindu.setScene(matchKriteriePane.getScene()));
+        matchKriteriePane.finn.setOnAction(e -> vindu.setScene(hovedScene.getScene()));
+        hovedScene.bt2.setOnAction(e -> vindu.setScene(besøkendePane.getScene()));
+
+        vindu.setTitle("Tinder_2.0");
+        vindu.setScene(scene1);
+        vindu.show();
     }
+
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+
+
 }
