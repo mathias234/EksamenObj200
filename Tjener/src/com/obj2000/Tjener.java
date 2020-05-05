@@ -32,7 +32,7 @@ public class Tjener {
     }
 
     private void handleMessage(String msg) throws IOException {
-        String[] tokens = msg.split("-");
+        String[] tokens = msg.split("!");
         if(tokens[0].equals("register")) {
             parseRegister(tokens);
         }
@@ -75,7 +75,11 @@ public class Tjener {
         String fraBrukerId = argumenter[1];
         String tilBrukerId = argumenter[2];
 
-        respondToClient("");
+        dbKontroller.loggDataForespørsel(fraBrukerId, tilBrukerId);
+
+        String bruker = dbKontroller.hentEnBruker(tilBrukerId);
+
+        respondToClient(bruker);
     }
 
     private void respondToClient(String msg) throws IOException {

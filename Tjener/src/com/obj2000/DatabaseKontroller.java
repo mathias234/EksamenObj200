@@ -29,8 +29,8 @@ public class DatabaseKontroller {
 
         String sql2 = "CREATE TABLE IF NOT EXISTS logg (\n"
                 + "    lNr INTEGER PRIMARY KEY NOT NULL,\n"
-                + "    infoFraBruker_id INTEGER NOT NULL, \n"
-                + "    infoTilBruker_id INTEGER NOT NULL \n"
+                + "    infoFraBruker_id varchar(36) NOT NULL, \n"
+                + "    infoTilBruker_id varchar(36) NOT NULL \n"
                 + "    );";
 
         try {
@@ -83,7 +83,7 @@ public class DatabaseKontroller {
      * @param fraBruker // bruker som det blir gitt data om
      * @param tilBruker // bruker som spørr etter data
      */
-    public void loggDataForespørsel(int fraBruker, int tilBruker){
+    public void loggDataForespørsel(String fraBruker, String tilBruker){
         String sql = "INSERT INTO logg(infoFraBruker_id, infoTilBruker_id) \n"
                 + "VALUES('" + fraBruker + "','" + tilBruker + "');";
 
@@ -106,7 +106,7 @@ public class DatabaseKontroller {
     public String hentEnBruker(String id){
             String data = "";
             String sql =  "SELECT * FROM bruker \n"
-                    + "WHERE bNr = " + id;
+                    + "WHERE bNr = '" + id + "'";
 
             try {
                 conn = DriverManager.getConnection(this.url);

@@ -4,6 +4,7 @@
     <list default="true" id="c378ae32-296b-4d51-b688-2c5ed5a566df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tjener/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Tjener/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tjener/src/com/obj2000/DatabaseKontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tjener/src/com/obj2000/DatabaseKontroller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tjener/src/com/obj2000/Tjener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Tjener/src/com/obj2000/Tjener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +32,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="D:/Tinder_2.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Tjener" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -66,6 +67,7 @@
       <workItem from="1588603635826" duration="273000" />
       <workItem from="1588604111003" duration="313000" />
       <workItem from="1588676696334" duration="4603000" />
+      <workItem from="1588684472383" duration="1109000" />
     </task>
     <servers />
   </component>
@@ -77,26 +79,26 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="808" y="429" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588603670191" />
-    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1588679621029">
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1588684477383">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="740" y="295" key="FileChooserDialogImpl/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588679621029" />
-    <state width="914" height="363" key="GridCell.Tab.0.bottom" timestamp="1588682135684">
+    <state x="740" y="295" key="FileChooserDialogImpl/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588684477383" />
+    <state width="914" height="363" key="GridCell.Tab.0.bottom" timestamp="1588684879816">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="914" height="363" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588682135684" />
-    <state width="914" height="363" key="GridCell.Tab.0.center" timestamp="1588682135683">
+    <state width="914" height="363" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588684879816" />
+    <state width="914" height="363" key="GridCell.Tab.0.center" timestamp="1588684879816">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="914" height="363" key="GridCell.Tab.0.center/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588682135683" />
-    <state width="914" height="363" key="GridCell.Tab.0.left" timestamp="1588682135683">
+    <state width="914" height="363" key="GridCell.Tab.0.center/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588684879816" />
+    <state width="914" height="363" key="GridCell.Tab.0.left" timestamp="1588684879816">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="914" height="363" key="GridCell.Tab.0.left/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588682135683" />
-    <state width="914" height="363" key="GridCell.Tab.0.right" timestamp="1588682135683">
+    <state width="914" height="363" key="GridCell.Tab.0.left/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588684879816" />
+    <state width="914" height="363" key="GridCell.Tab.0.right" timestamp="1588684879816">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="914" height="363" key="GridCell.Tab.0.right/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588682135683" />
+    <state width="914" height="363" key="GridCell.Tab.0.right/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1588684879816" />
     <state width="914" height="363" key="GridCell.Tab.1.bottom" timestamp="1588682135684">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
