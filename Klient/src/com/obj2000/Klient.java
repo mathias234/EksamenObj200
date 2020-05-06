@@ -22,11 +22,11 @@ public class Klient {
         out.writeUTF(message);
     }
 
-    public static void sendBilde(String minId, byte[] bilde) throws UnknownHostException, IOException {
+    public static void sendMessageMedBilde(String msg, byte[] bilde) throws UnknownHostException, IOException {
         socket = new Socket(ipAddress, port);
 
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-        out.writeUTF("lastOppBilde!"+minId);
+        out.writeUTF(msg);
         out.write(bilde.length);
         out.write(bilde);
     }

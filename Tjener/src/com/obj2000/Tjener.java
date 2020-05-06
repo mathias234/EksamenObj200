@@ -42,7 +42,10 @@ public class Tjener {
     private void handleMessage(String msg, DataInputStream stream) throws IOException {
         String[] tokens = msg.split("!");
         if(tokens[0].equals("register")) {
-            parseRegister(tokens);
+            int length = stream.readInt();
+            byte[] bytes = new byte[length];
+            stream.read(bytes);
+            parseRegister(tokens, bytes);
         }
         else if(tokens[0].equals("matcher")) {
             parseMatcher(tokens);
@@ -58,12 +61,6 @@ public class Tjener {
         }
         else if(tokens[0].equals("hentNavnTlf")){
             parseNavnTlf(tokens);
-        }
-        else if(tokens[0].equals("lastOppBilde")) {
-            int length = stream.readInt();
-            byte[] bytes = new byte[length];
-            stream.read(bytes);
-            parseBilde(tokens, bytes);
         }
         else if(tokens[0].equals("hentBilde")) {
             parseHentBilde(tokens);
@@ -83,17 +80,6 @@ public class Tjener {
         }
     }
 
-    private void parseBilde(String[] argumenter, byte[] bytes) throws IOException {
-        String minId = argumenter[1];
-        minId = minId.replace('-', ' ');
-
-        File file = new File(minId + ".img");
-        if(file.createNewFile()) {
-            FileOutputStream writer = new FileOutputStream(file);
-            writer.write(bytes);
-        }
-    }
-
     private void parseNavnTlf(String[] argumenter) throws IOException {
         String brukerId = argumenter[1];
 
@@ -102,7 +88,7 @@ public class Tjener {
         respondToClient(data);
     }
 
-    private void parseRegister(String[] argumenter) throws IOException {
+    private void parseRegister(String[] argumenter, byte[] bilde) throws IOException {
         UUID uuid = UUID.randomUUID();
         String bNr = uuid.toString();
         String navn =  argumenter[1];
@@ -111,7 +97,7 @@ public class Tjener {
         String interesser = argumenter[4];
         String bosted = argumenter[5];
         String tlf = argumenter[6];
-        dbKontroller.opprettBruker(bNr, navn, kjønn, alder, interesser, bosted, tlf);
+        dbKontroller.opprettBruker(bNr, navn, kjønn, alder, interesser, bosted, tlf, bilde);
 
         respondToClient(uuid.toString());
     }

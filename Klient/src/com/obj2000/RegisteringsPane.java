@@ -107,7 +107,7 @@ public class RegisteringsPane extends GridPane {
         String bosted = txtBosted.getText();
         String tlf = txtTlf.getText();
 
-        Klient.sendMessage("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf);
+        Klient.sendMessageMedBilde("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf, new byte[0]);
 
         return Klient.receiveMessage();
     }

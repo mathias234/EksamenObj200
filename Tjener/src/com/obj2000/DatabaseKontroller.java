@@ -24,7 +24,8 @@ public class DatabaseKontroller {
                 + "    alder INTEGER NOT NULL, \n"
                 + "    interesser varchar(150) NOT NULL, \n"
                 + "    bosted varchar(50) NOT NULL, \n"
-                + "    tlf varchar(12) NOT NULL \n"
+                + "    tlf varchar(12) NOT NULL, \n"
+                + "    bilde BLOB \n"
                 + "    );";
 
         String sql2 = "CREATE TABLE IF NOT EXISTS logg (\n"
@@ -64,12 +65,20 @@ public class DatabaseKontroller {
      * @param bosted // bruker sitt bosted
      * @param tlf // bruker sitt telefonnummer
      */
-    public void opprettBruker(String bNr, String navn, String kjønn, String alder, String interesser, String bosted, String tlf) {
-        String sql = "INSERT INTO bruker(bNr, navn, kjønn, alder, interesser, bosted, tlf) \n"
-                + "VALUES('" + bNr + "','" + navn + "','" + kjønn + "','" + alder + "','" + interesser + "', '" + bosted + "', '" + tlf + "');";
+    public void opprettBruker(String bNr, String navn, String kjønn, String alder, String interesser, String bosted, String tlf, byte[] bildeBlob) {
+        String sql = "INSERT INTO bruker(bNr, navn, kjønn, alder, interesser, bosted, tlf, bilde) \n"
+                + "VALUES(?,?,?,?,?,?,?,?);";
         try {
             conn = DriverManager.getConnection(this.url);
-            Statement stmt = conn.createStatement();
+            PreparedStatement  stmt = conn.prepareStatement(sql);
+            stmt.setString(1, bNr);
+            stmt.setString(2, navn);
+            stmt.setString(3, kjønn);
+            stmt.setString(4, alder);
+            stmt.setString(5, interesser);
+            stmt.setString(6, bosted);
+            stmt.setString(7, tlf);
+            stmt.setBytes(8, bildeBlob);
             stmt.execute(sql);
 
             System.out.println("bruker registrert");
