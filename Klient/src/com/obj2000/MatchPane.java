@@ -62,7 +62,7 @@ public class MatchPane extends BorderPane {
         });
     }
 
-    public void visMatcher(String[] data){
+    private void visMatcher(String[] data){
         String kjonn;
         String alder;
         String id;

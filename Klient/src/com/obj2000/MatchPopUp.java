@@ -41,7 +41,7 @@ public class MatchPopUp extends Popup {
          btLukk.setOnAction(e -> {this.hide();});
     }
 
-    public BorderPane fyllInnhold() throws Exception {
+    private BorderPane fyllInnhold() throws Exception {
 
         BorderPane bp = new BorderPane();
         GridPane gp = new GridPane();

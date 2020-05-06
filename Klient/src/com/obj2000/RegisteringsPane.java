@@ -37,7 +37,8 @@ public class RegisteringsPane extends GridPane {
         fyllPane();
     }
 
-    protected void fyllPane() {
+
+    private void fyllPane() {
         ImageView lugo = new ImageView(image);
 
         //Labels

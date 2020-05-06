@@ -36,7 +36,7 @@ public class MatchKriteriePane extends GridPane {
 
     }
 
-    public void opprettPane() {
+    private void opprettPane() {
         oppe.getChildren().addAll(txt3, txtOppe);
         nede.getChildren().addAll(txt4, txtNede);
         kjonn.getChildren().addAll(txt, m,d);

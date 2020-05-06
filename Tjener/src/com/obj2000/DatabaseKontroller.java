@@ -7,14 +7,15 @@ public class DatabaseKontroller {
     private String url;
     private Connection conn = null;
 
+    /**
+     * Oppretter databasen
+     * @param url SQLite URL
+     */
     public DatabaseKontroller(String url) {
         this.url = url;
         opprettDB();
     }
 
-    /**
-     * Metode for å lage nye tabeller i DB, samt opprette en om det ikke finnes en fra for
-     */
     private void opprettDB() {
 
         String sql1 = "CREATE TABLE IF NOT EXISTS bruker ( \n"
@@ -57,13 +58,13 @@ public class DatabaseKontroller {
 
 
     /** metode for å sette inn ny bruker i DB
-     * @param bNr // unik Id
-     * @param navn // bruker navn
-     * @param kjonn // bruker sitt kjonn
-     * @param alder // bruker sin alder
-     * @param interesser // bruker sin adresse
-     * @param bosted // bruker sitt bosted
-     * @param tlf // bruker sitt telefonnummer
+     * @param bNr unik Id
+     * @param navn bruker navn
+     * @param kjonn bruker sitt kjonn
+     * @param alder bruker sin alder
+     * @param interesser bruker sin adresse
+     * @param bosted bruker sitt bosted
+     * @param tlf bruker sitt telefonnummer
      */
     public void opprettBruker(String bNr, String navn, String kjonn, String alder, String interesser, String bosted, String tlf, byte[] bildeBlob) {
         String sql = "INSERT INTO bruker(bNr, navn, kjonn, alder, interesser, bosted, tlf, bilde) \n"
@@ -112,8 +113,8 @@ public class DatabaseKontroller {
     }
 
     /**
-     * @param fraBruker // bruker som det blir gitt data om
-     * @param tilBruker // bruker som sporr etter data
+     * @param fraBruker bruker som det blir gitt data om
+     * @param tilBruker bruker som sporr etter data
      */
     public void loggDataForesporsel(String fraBruker, String tilBruker){
         String sql = "INSERT INTO logg(infoFraBruker_id, infoTilBruker_id) \n"
@@ -132,8 +133,8 @@ public class DatabaseKontroller {
     }
     
     /**
-     * @param id // id til bruker
-     * @return // String med bruker
+     * @param id id til bruker
+     * @return String med bruker
      */
     public String hentEnBruker(String id){
             String data = "";
@@ -161,8 +162,8 @@ public class DatabaseKontroller {
         }
     
     /**
-     * @param id // id'en til brukeren som onsker å vite hvem som har informasjon om vedkommende
-     * @return // Arraylist med resultater
+     * @param id id'en til brukeren som onsker å vite hvem som har informasjon om vedkommende
+     * @return Arraylist med resultater
      */
     public ArrayList<String> hvemHarInfoOmMeg(String id) {
         ArrayList<String> resultater = new ArrayList<>();
@@ -191,11 +192,11 @@ public class DatabaseKontroller {
     }
 
     /**
-     * @param fraAlder //laveste alder
-     * @param tilAlder // hoyeste alder
-     * @param kjonn // kjonn (mann eller kvinne)
-     * @param brukerId // brukeren sin id for å ikke returnere brukeren som skal ha matcher
-     * @return // ArrayList med resultater
+     * @param fraAlder laveste alder
+     * @param tilAlder hoyeste alder
+     * @param kjonn kjonn (mann eller kvinne)
+     * @param brukerId brukeren sin id for å ikke returnere brukeren som skal ha matcher
+     * @return ArrayList med resultater
      */
     public ArrayList<String> finnMatcher(String fraAlder, String tilAlder, String kjonn, String brukerId){
         int min = Integer.parseInt(fraAlder);
@@ -229,8 +230,8 @@ public class DatabaseKontroller {
     }
 
     /**
-     * @param id //bruker id
-     * @return // String med navn og tlf
+     * @param id bruker id
+     * @return String med navn og tlf
      */
     public String hentNavnOgTlf(String id){
         String data = "";
@@ -256,7 +257,7 @@ public class DatabaseKontroller {
     }
 
     /**
-     * @return // Test som viser alle brukere i DB
+     * @return Test som viser alle brukere i DB
      */
     public ArrayList<String> visAlleBrukere(){
         ArrayList<String> resultater = new ArrayList<>();
