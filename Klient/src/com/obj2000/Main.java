@@ -3,6 +3,7 @@ package com.obj2000;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -21,6 +22,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         vindu = primaryStage;
+        Image icon  = new Image(getClass().getResourceAsStream(
+                "index.jpg"));
+        vindu.getIcons().add(icon);
         Klient.setIp("127.0.0.1");
         Klient.setPort(5000);
 

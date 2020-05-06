@@ -2,6 +2,7 @@ package com.obj2000;
 
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -16,19 +17,13 @@ import java.util.Arrays;
 public class MatchPane extends BorderPane {
     Button oppdaterBtn;
     HBox antMatch;
-    TextField txt;
-    Text mtch;
     VBox container;
     ScrollPane sPane;
     MatchHBox boks;
 
     public MatchPane(HovedScene hovedScene){
-        txt = new TextField("10");
         oppdaterBtn = new Button("Oppdater");
-        mtch = new Text("Antall matcher: ");
         container = new VBox(5);
-        txt.setPrefColumnCount(3);
-        mtch.setStyle("-fx-font-size: 13px;-fx-font-weight:bold;-fx-padding:10px;");
         sPane = new ScrollPane();
         sPane.setContent(container);
         setCenter(sPane);
@@ -37,7 +32,8 @@ public class MatchPane extends BorderPane {
         antMatch.setSpacing(10);
         antMatch.setPadding(new Insets(10, 0,10,65));
         antMatch.setStyle("-fx-border-color: black;-fx-border-width: 0 0 3 0;");
-        antMatch.getChildren().addAll(mtch, txt, oppdaterBtn);
+        antMatch.getChildren().addAll(oppdaterBtn);
+        antMatch.setAlignment(Pos.BASELINE_RIGHT);
         setTop(antMatch);
 
         oppdaterBtn.setOnAction(e -> {
@@ -58,7 +54,7 @@ public class MatchPane extends BorderPane {
                 System.out.println(msg);
                 String[] matchData = msg.split("#");
                 System.out.println(Arrays.toString(matchData));
-                hovedScene.matchPane.visMatcher(matchData);
+                visMatcher(matchData);
             } catch(IOException ex) {
                 System.out.println("Oppdatering feilet\n"+ex);
             }

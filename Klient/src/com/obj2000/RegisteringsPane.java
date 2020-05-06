@@ -104,6 +104,7 @@ public class RegisteringsPane extends GridPane {
         d.setUserData("dame");
         txtInteresser.setMaxWidth(300);
         txtInteresser.setMaxHeight(100);
+        txtInteresser.setWrapText(true);
         kjønnToggleGroup = new ToggleGroup();
         m.setToggleGroup(kjønnToggleGroup);
         d.setToggleGroup(kjønnToggleGroup);

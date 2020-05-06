@@ -8,11 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.UnknownHostException;
-
 import static com.obj2000.Main.minId;
 
 public class MatchHBox extends HBox {
@@ -74,7 +71,7 @@ public class MatchHBox extends HBox {
     private void hentBilde(){
         profilBilde = null;
         try{
-            Klient.sendMessage("hentBilde!" + minId);
+            Klient.sendMessage("hentBilde!" + matchId);
 
             byte[] data = Klient.receiveBilde();
 
