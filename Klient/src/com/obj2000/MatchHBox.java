@@ -15,8 +15,6 @@ import static com.obj2000.Main.minId;
 public class MatchHBox extends HBox {
     Label lbKjonn = null;
     Label lbAlder = null;
-    String navn;
-    String tlf;
     String kjonn;
     String alder;
     String interesser;
@@ -46,6 +44,10 @@ public class MatchHBox extends HBox {
         getChildren().addAll(lbKjonn,lbAlder, visMatch);
     }
 
+    /**
+     * Metode som er ansvarlig for å opprette Popup vinduet til matchene, samt hente
+     * navn og telefonnummeret til gitt match fra serveren.
+     */
     public void visMatchInfo(){
         try{
             Klient.sendMessage("hentNavnTlf!" + matchId);
@@ -60,6 +62,10 @@ public class MatchHBox extends HBox {
         }
     }
 
+    /**
+     * Metode som logger hvilken bruker som har fått data om en annen bruker.
+     * dataen sendes til server og lagres i databasen.
+     */
     public void logg(){
         try{
             Klient.sendMessage("takontakt!" + minId + "!" + matchId);
@@ -68,6 +74,10 @@ public class MatchHBox extends HBox {
         }
     }
 
+    /**
+     * metode for å hente bilde fra serveren, legger dataen i et byte array og serealiserer dataene til
+     * et helt bilde igjen.
+     */
     private void hentBilde(){
         profilBilde = null;
         try{

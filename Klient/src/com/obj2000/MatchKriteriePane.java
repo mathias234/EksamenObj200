@@ -36,6 +36,9 @@ public class MatchKriteriePane extends GridPane {
 
     }
 
+    /**
+     * metode for å opprette innholdet i pane'et
+     */
     private void opprettPane() {
         oppe.getChildren().addAll(txt3, txtOppe);
         nede.getChildren().addAll(txt4, txtNede);

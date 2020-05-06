@@ -62,6 +62,10 @@ public class MatchPane extends BorderPane {
         });
     }
 
+    /**
+     * @param data // String array med informasjon om alle matchene som ble hentet fra server
+     * Metoden oppretter Matchbox'er (extender HBox) til hver enkelt match og legger disse ut i en VBox.
+     */
     private void visMatcher(String[] data){
         String kjonn;
         String alder;
