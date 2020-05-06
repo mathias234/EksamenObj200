@@ -17,6 +17,8 @@ public class MatchHBox extends HBox {
     public MatchHBox(String id, String alder, String kjønn, String interesser, String bosted){
         super(20);
         matchId = id;
+        this.interesser = interesser;
+        this.bosted = bosted;
         lbKjønn = new Label(kjønn);
         lbAlder = new Label(alder);
         setStyle("-fx-background-color: #E8E8E8;" + "-fx-border-style: solid inside;" + "-fx-font-size: 15px;");

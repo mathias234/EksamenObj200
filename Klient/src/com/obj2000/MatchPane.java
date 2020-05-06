@@ -43,13 +43,18 @@ public class MatchPane extends BorderPane {
         String kjønn;
         String alder;
         String id;
+        String interesser;
+        String bosted;
 
         for(int i = 0; i < data.length; i++){
             String[] matchData = data[i].split("!");
             id = matchData[0];
             alder = matchData[1];
             kjønn = matchData[2];
-            container.getChildren().add(new MatchHBox(id, alder, kjønn));
+            interesser = matchData[3];
+            bosted = matchData[4];
+
+            container.getChildren().add(new MatchHBox(id, alder, kjønn, interesser, bosted));
         }
     }
 }
