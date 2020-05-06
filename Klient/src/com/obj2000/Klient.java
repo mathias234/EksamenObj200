@@ -22,6 +22,15 @@ public class Klient {
         out.writeUTF(message);
     }
 
+    public static void sendBilde(String minId, byte[] bilde) throws UnknownHostException, IOException {
+        socket = new Socket(ipAddress, port);
+
+        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+        out.writeUTF("lastOppBilde!"+minId);
+        out.write(bilde.length);
+        out.write(bilde);
+    }
+
     /**
      * Sjekker om tjeneren svarte på den siste "sendMessage"
      * @return
@@ -32,6 +41,14 @@ public class Klient {
         String message = in.readUTF();
         socket.close();
         return message;
+    }
+
+    public static byte[] receiveBilde() throws IOException {
+        DataInputStream in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+        int length = in.readInt();
+        byte[] bytes = new byte[length];
+        socket.close();
+        return bytes;
     }
 
     public static void setIp(String ip) {

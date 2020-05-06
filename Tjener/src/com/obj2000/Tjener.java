@@ -28,7 +28,7 @@ public class Tjener {
 
                 String line = in.readUTF();
                 System.out.println("Fikk melding: " + line);
-                handleMessage(line);
+                handleMessage(line, in);
 
 
                 connectedSocket.close();
@@ -39,7 +39,7 @@ public class Tjener {
         }
     }
 
-    private void handleMessage(String msg) throws IOException {
+    private void handleMessage(String msg, DataInputStream stream) throws IOException {
         String[] tokens = msg.split("!");
         if(tokens[0].equals("register")) {
             parseRegister(tokens);
@@ -58,6 +58,39 @@ public class Tjener {
         }
         else if(tokens[0].equals("hentNavnTlf")){
             parseNavnTlf(tokens);
+        }
+        else if(tokens[0].equals("lastOppBilde")) {
+            int length = stream.readInt();
+            byte[] bytes = new byte[length];
+            stream.read(bytes);
+            parseBilde(tokens, bytes);
+        }
+        else if(tokens[0].equals("hentBilde")) {
+            parseHentBilde(tokens);
+        }
+    }
+
+    private void parseHentBilde(String[] argumenter) throws IOException {
+        String idTilBilde = argumenter[1];
+        idTilBilde = idTilBilde.replace('-', ' ');
+
+        File file = new File(idTilBilde + ".img");
+
+        if(file.exists()) {
+            FileInputStream is = new FileInputStream(file);
+            byte[] bilde = is.readAllBytes();
+            respondToClient(bilde);
+        }
+    }
+
+    private void parseBilde(String[] argumenter, byte[] bytes) throws IOException {
+        String minId = argumenter[1];
+        minId = minId.replace('-', ' ');
+
+        File file = new File(minId + ".img");
+        if(file.createNewFile()) {
+            FileOutputStream writer = new FileOutputStream(file);
+            writer.write(bytes);
         }
     }
 
@@ -130,6 +163,12 @@ public class Tjener {
     private void respondToClient(String msg) throws IOException {
         DataOutputStream out = new DataOutputStream(connectedSocket.getOutputStream());
         out.writeUTF(msg);
+    }
+
+    private void respondToClient(byte[] bilde) throws IOException {
+        DataOutputStream out = new DataOutputStream(connectedSocket.getOutputStream());
+        out.write(bilde.length);
+        out.write(bilde);
     }
 
     private String finnBesteMatcher(ArrayList<String> matchData, String brukerId){
