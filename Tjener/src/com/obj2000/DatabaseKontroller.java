@@ -88,6 +88,29 @@ public class DatabaseKontroller {
         }
     }
 
+    public byte[] hentBilde(String id) {
+        byte[] data = new byte[0];
+        String sql =  "SELECT bilde FROM bruker \n"
+                + "WHERE bNr = '" + id + "'";
+
+        try {
+            conn = DriverManager.getConnection(this.url);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                data = rs.getBytes(1);
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.getMessage();
+        }
+
+        return data;
+    }
+
     /**
      * @param fraBruker // bruker som det blir gitt data om
      * @param tilBruker // bruker som spørr etter data

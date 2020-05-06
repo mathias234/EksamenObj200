@@ -69,15 +69,7 @@ public class Tjener {
 
     private void parseHentBilde(String[] argumenter) throws IOException {
         String idTilBilde = argumenter[1];
-        idTilBilde = idTilBilde.replace('-', ' ');
-
-        File file = new File(idTilBilde + ".img");
-
-        if(file.exists()) {
-            FileInputStream is = new FileInputStream(file);
-            byte[] bilde = is.readAllBytes();
-            respondToClient(bilde);
-        }
+        respondToClient(dbKontroller.hentBilde(idTilBilde));
     }
 
     private void parseNavnTlf(String[] argumenter) throws IOException {
