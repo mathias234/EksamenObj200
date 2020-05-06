@@ -2,9 +2,14 @@ package com.obj2000;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import java.io.IOException;
+import java.net.UnknownHostException;
+
+import static com.obj2000.Main.minId;
 
 public class MatchHBox extends HBox {
     Label lbKjønn = null;
@@ -17,11 +22,13 @@ public class MatchHBox extends HBox {
     String bosted;
     String matchId;
     Button visMatch;
+    Node foreldreNode;
 
-    public MatchHBox(String id, String alder, String kjønn, String interesser, String bosted){
+    public MatchHBox(String id, String alder, String kjønn, String interesser, String bosted, Node foreldreNode){
 
         super(20);
         matchId = id;
+        this.foreldreNode = foreldreNode;
         this.interesser = interesser;
         this.bosted = bosted;
         this.kjønn = kjønn;
@@ -33,16 +40,28 @@ public class MatchHBox extends HBox {
         setAlignment(Pos.CENTER);
         setPadding(new Insets(25, 12, 25, 150));
         visMatch = new Button("Få detaljer");
+        visMatch.setOnAction(event -> {visMatchInfo();});
         getChildren().addAll(lbKjønn,lbAlder, visMatch);
     }
 
-    public void hentNavnOgTlf(String data){
-        String[] linje = data.split("!");
-        this.navn = linje[0];
-        this.tlf = linje[1];
+    public void visMatchInfo(){
+        try{
+            Klient.sendMessage("hentNavnTlf!" + matchId);
+            String melding = Klient.receiveMessage();
+            String[] data = melding.split("!");
+            MatchPopUp pop = new MatchPopUp(data[0], data[1], kjønn, alder, interesser, bosted);
+            pop.show(foreldreNode, 970, 94);
+            logg();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void logg(){
-
+        try{
+            Klient.sendMessage("takontakt!" + minId + "!" + matchId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

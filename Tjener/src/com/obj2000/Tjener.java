@@ -56,6 +56,17 @@ public class Tjener {
         else if(tokens[0].equals("vislogg")) {
             parseLogg(tokens);
         }
+        else if(tokens[0].equals("hentNavnTlf")){
+            parseNavnTlf(tokens);
+        }
+    }
+
+    private void parseNavnTlf(String[] argumenter) throws IOException {
+        String brukerId = argumenter[1];
+
+        String data = dbKontroller.hentNavnOgTlf(brukerId);
+
+        respondToClient(data);
     }
 
     private void parseRegister(String[] argumenter) throws IOException {
@@ -84,15 +95,13 @@ public class Tjener {
         respondToClient(tilKlient);
     }
 
-    private void parseTaKontakt(String[] argumenter) throws IOException {
+    private void parseTaKontakt(String[] argumenter) {
         String fraBrukerId = argumenter[1];
         String tilBrukerId = argumenter[2];
 
         dbKontroller.loggDataForespørsel(fraBrukerId, tilBrukerId);
 
-        String bruker = dbKontroller.hentEnBruker(tilBrukerId);
-
-        respondToClient(bruker);
+        System.out.println("Logget i DB");
     }
 
     private void parseSjekkId(String[] argumenter) throws IOException {
@@ -114,8 +123,6 @@ public class Tjener {
         for(String bruker : brukereSomHarInfo) {
             ut += bruker + "#";
         }
-
-        System.out.println(ut);
 
         respondToClient(ut);
     }

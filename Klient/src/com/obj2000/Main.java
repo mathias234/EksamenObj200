@@ -78,11 +78,8 @@ public class Main extends Application {
 
 
 
-        //hovedScene.matchPane.boks.visMatch.setOnAction(event -> {
-            //MatchPopUp pop = new MatchPopUp();
-        //});
-
         vindu.setTitle("NettMatch");
+        vindu.setResizable(false);
 
         if(idFile.exists()) {
             Scanner idScanner = new Scanner(idFile);

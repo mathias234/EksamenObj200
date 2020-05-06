@@ -10,8 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-
 public class MatchPane extends BorderPane {
     Button oppdaterBtn;
     HBox antMatch;
@@ -54,7 +52,7 @@ public class MatchPane extends BorderPane {
             kjønn = matchData[2];
             interesser = matchData[3];
             bosted = matchData[4];
-            boks = new MatchHBox(id, alder, kjønn, interesser, bosted);
+            boks = new MatchHBox(id, alder, kjønn, interesser, bosted, this);
             container.getChildren().add(boks);
         }
     }

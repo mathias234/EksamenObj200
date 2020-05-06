@@ -13,9 +13,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 public class MatchPopUp extends Popup {
-
     String navn, tlf, kjønn, alder, interesser, bosted;
     Label lbAlder = new Label("Alder:"), lbBosted = new Label("Bosted:"), lbInteresser = new Label("Interesser:"), lbNavn = new Label("Navn:"), lbTelefon = new Label("Telefon:");
     Button btLukk = new Button("Lukk vindu");
@@ -42,6 +42,7 @@ public class MatchPopUp extends Popup {
 
         BorderPane bp = new BorderPane();
         GridPane gp = new GridPane();
+        bp.setStyle("-fx-background-color: #E8E8E8;");
 
         tfNavn.setText(navn);
         tfNavn.setDisable(true);
@@ -73,7 +74,6 @@ public class MatchPopUp extends Popup {
 
         bp.setCenter(gp);
         bp.setTop(btLukk);
-        bp.setTop(hbox);
 
         return bp;
     }
