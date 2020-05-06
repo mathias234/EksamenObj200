@@ -3,6 +3,7 @@ package com.obj2000;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -88,6 +89,10 @@ public class Main extends Application {
             catch (IOException ex) {
                 System.out.println("Oppdatering feilet\n" + ex);
             }
+        });
+
+        hovedScene.matchPane.boks.visMatch.setOnAction(event -> {
+            MatchPopUp pop = new MatchPopUp();
         });
 
         vindu.setTitle("NettMatch");

@@ -9,6 +9,10 @@ import javafx.scene.layout.HBox;
 public class MatchHBox extends HBox {
     Label lbKjønn = null;
     Label lbAlder = null;
+    String navn;
+    String tlf;
+    String kjønn;
+    String alder;
     String interesser;
     String bosted;
     String matchId;
@@ -19,6 +23,8 @@ public class MatchHBox extends HBox {
         matchId = id;
         this.interesser = interesser;
         this.bosted = bosted;
+        this.kjønn = kjønn;
+        this.alder = alder;
         lbKjønn = new Label(kjønn);
         lbAlder = new Label(alder);
         setStyle("-fx-background-color: #E8E8E8;" + "-fx-border-style: solid inside;" + "-fx-font-size: 15px;");
@@ -26,5 +32,15 @@ public class MatchHBox extends HBox {
         setPadding(new Insets(25, 12, 25, 150));
         visMatch = new Button("Få detaljer");
         getChildren().addAll(lbKjønn,lbAlder, visMatch);
+    }
+
+    public void hentNavnOgTlf(String data){
+        String[] linje = data.split("!");
+        this.navn = linje[0];
+        this.tlf = linje[1];
+    }
+
+    public void logg(){
+
     }
 }

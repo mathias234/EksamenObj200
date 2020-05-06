@@ -152,7 +152,6 @@ public class Tjener {
     }
 
     private void regnMatchScore(Bruker match, Bruker bruker){
-        System.out.println("matchScore");
         double score = 0;
         double aldersVekt = 0.1;
         double bostedVekt = 10;

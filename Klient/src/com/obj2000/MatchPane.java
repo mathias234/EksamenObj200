@@ -19,6 +19,7 @@ public class MatchPane extends BorderPane {
     Text mtch;
     VBox container;
     ScrollPane sPane;
+    MatchHBox boks;
 
     public MatchPane(){
         txt = new TextField("10");
@@ -53,8 +54,8 @@ public class MatchPane extends BorderPane {
             kjønn = matchData[2];
             interesser = matchData[3];
             bosted = matchData[4];
-
-            container.getChildren().add(new MatchHBox(id, alder, kjønn, interesser, bosted));
+            boks = new MatchHBox(id, alder, kjønn, interesser, bosted);
+            container.getChildren().add(boks);
         }
     }
 }

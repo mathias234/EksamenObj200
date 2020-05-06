@@ -35,7 +35,7 @@ public class HovedScene {
         pane.setStyle("-fx-background-color: blue");
         bp.setPadding(new Insets(20,20,20,20));
         bp.setTop(top);
-        bp.setCenter(matchPane);
+        bp.setCenter(mkp);
         logo.getChildren().add(lugo);
         top.getChildren().addAll(logo, knapper);
         top.setStyle("-fx-border-color: black;-fx-border-width: 0 0 3 0; -fx-padding-bottom: 5px;-fx-background-color: lightgrey;");
