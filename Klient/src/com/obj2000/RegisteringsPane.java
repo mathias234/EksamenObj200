@@ -27,7 +27,7 @@ public class RegisteringsPane extends GridPane {
     Button registrer, btBilde;
     Image image = new Image(getClass().getResourceAsStream(
             "NettMatch3.png"));
-    HBox kjonn = new HBox();
+    HBox kjonnHBox = new HBox();
     ToggleGroup kjonnToggleGroup;
     FileChooser velgBilde;
     Image sok;
@@ -46,7 +46,7 @@ public class RegisteringsPane extends GridPane {
         interesser = new Label("Interesser: ");
         tlf = new Label("Tlf: ");
         bosted = new Label("Bosted: ");
-        kjonn = new Label("Kjonn: ");
+        kjonn = new Label("Kjønn: ");
         lbBilde = new Label("Velg bilde: ");
 
         //Styleing
@@ -77,7 +77,7 @@ public class RegisteringsPane extends GridPane {
         btBilde.setGraphic(new ImageView(sok));
 
         //kjonn box
-        kjonn.getChildren().addAll(m, d);
+        kjonnHBox.getChildren().addAll(m, d);
 
         //FileChooser
         velgBilde = new FileChooser();
@@ -121,7 +121,7 @@ public class RegisteringsPane extends GridPane {
         add(interesser, 0, 6);
         add(txtInteresser, 1, 6);
         add(kjonn, 0, 7);
-        add(kjonn, 1, 7);
+        add(kjonnHBox, 1, 7);
         add(lbBilde, 0, 8);
         add(tfBilde, 1, 8);
         add(btBilde, 2, 8);
