@@ -74,7 +74,6 @@ public class Tjener {
 
         ArrayList<String> data = dbKontroller.finnMatcher(fraAlder, tilAlder, kjønn);
         String tilKlient = finnBesteMatcher(data, fraBrukerId);
-        System.out.println(tilKlient);
         respondToClient(tilKlient);
     }
 
@@ -126,7 +125,7 @@ public class Tjener {
 
         String ut = "";
         for(Bruker b : matcher)
-            ut += "#" + b.toString();
+            ut += b.toString() + "#";
 
         return ut;
     }
