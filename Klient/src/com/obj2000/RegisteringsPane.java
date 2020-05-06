@@ -8,6 +8,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class RegisteringsPane extends GridPane {
     Label navn, alder, interesser, tlf, bosted, kjønn;
     TextField txtNavn, txtAlder, txtTlf, txtBosted;
@@ -88,4 +92,25 @@ public class RegisteringsPane extends GridPane {
         registrer.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
     }
+
+    /**
+     * Denne metoden vil sende registrerings request til tjeneren
+     * @throws IOException
+     */
+    public String registrer() throws IOException {
+        String navn = txtNavn.getText();
+        String kjønn = "";
+        if(kjønnToggleGroup.getSelectedToggle() != null)
+            kjønn = (String)kjønnToggleGroup.getSelectedToggle().getUserData();
+        String alder = txtAlder.getText();
+        String interesser = txtInteresser.getText();
+        String bosted = txtBosted.getText();
+        String tlf = txtTlf.getText();
+
+        Klient.sendMessage("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf);
+
+        return Klient.receiveMessage();
+    }
+
+
 }

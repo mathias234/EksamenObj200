@@ -4,7 +4,7 @@ import java.net.*;
 import java.io.*;
 
 public class Klient {
-    private static String ip;
+    private static String ipAddress;
     private static int port;
 
     private static Socket socket;
@@ -16,7 +16,7 @@ public class Klient {
      * @throws IOException
      */
     public static void sendMessage(String message) throws UnknownHostException, IOException {
-        socket = new Socket(ip, port);
+        socket = new Socket(ipAddress, port);
 
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
         out.writeUTF(message);
@@ -35,10 +35,10 @@ public class Klient {
     }
 
     public static void setIp(String ip) {
-        ip = ip;
+        ipAddress = ip;
     }
 
-    public static void setPort(int port) {
-        port = port;
+    public static void setPort(int p) {
+        port = p;
     }
 }

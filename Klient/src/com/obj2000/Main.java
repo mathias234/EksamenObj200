@@ -3,18 +3,16 @@ package com.obj2000;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main extends Application {
-    private String minId;
+    public static String minId;
 
     private Stage vindu;
     private Scene scene1;
@@ -37,7 +35,7 @@ public class Main extends Application {
 
         registeringsPane.registrer.setOnAction(e -> {
             try {
-                register();
+                minId = registeringsPane.registrer();
 
                 if(!idFile.exists()) {
                     if(!idFile.createNewFile()) {
@@ -48,7 +46,6 @@ public class Main extends Application {
                 FileWriter writer = new FileWriter(idFile);
                 writer.write(minId);
                 writer.close();
-
                 vindu.setScene(hovedScene.getScene());
             } catch (IOException ex) {
                 System.out.println("Feil i registrering, prøv igjen\n"+ex);
@@ -91,9 +88,9 @@ public class Main extends Application {
             }
         });
 
-        hovedScene.matchPane.boks.visMatch.setOnAction(event -> {
-            MatchPopUp pop = new MatchPopUp();
-        });
+        //hovedScene.matchPane.boks.visMatch.setOnAction(event -> {
+            //MatchPopUp pop = new MatchPopUp();
+        //});
 
         vindu.setTitle("NettMatch");
 
@@ -106,7 +103,10 @@ public class Main extends Application {
             // Spør serveren om id er valid
             Klient.sendMessage("sjekkid!" + minId);
 
-            if(Klient.receiveMessage().equals("1")) {
+            String svar = Klient.receiveMessage();
+            System.out.println(svar);
+
+            if(svar.equals("1")) {
                 // Åpne hoved scenen
                 vindu.setScene(hovedScene.getScene());
             }
@@ -126,23 +126,6 @@ public class Main extends Application {
         vindu.show();
     }
 
-    /**
-     * Denne metoden vil sende registrerings request til tjeneren
-     * @throws IOException
-     */
-    private void register() throws IOException {
-        String navn = registeringsPane.txtNavn.getText();
-        String kjønn = "";
-        if(registeringsPane.kjønnToggleGroup.getSelectedToggle() != null)
-            kjønn = (String)registeringsPane.kjønnToggleGroup.getSelectedToggle().getUserData();
-        String alder = registeringsPane.txtAlder.getText();
-        String interesser = registeringsPane.txtInteresser.getText();
-        String bosted = registeringsPane.txtBosted.getText();
-        String tlf = registeringsPane.txtTlf.getText();
-
-        Klient.sendMessage("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf);
-        minId = Klient.receiveMessage();
-    }
 
     public static void main(String[] args) {
         launch(args);
