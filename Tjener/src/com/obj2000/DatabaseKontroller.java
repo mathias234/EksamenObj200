@@ -79,12 +79,12 @@ public class DatabaseKontroller {
             stmt.setString(6, bosted);
             stmt.setString(7, tlf);
             stmt.setBytes(8, bildeBlob);
-            stmt.execute(sql);
+            stmt.execute();
 
             System.out.println("bruker registrert");
             conn.close();
         } catch (SQLException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
     }
 

@@ -42,9 +42,11 @@ public class Tjener {
     private void handleMessage(String msg, DataInputStream stream) throws IOException {
         String[] tokens = msg.split("!");
         if(tokens[0].equals("register")) {
-            int length = stream.readInt();
+            int length = Integer.parseInt(tokens[tokens.length-1]);
+            System.out.println(length);
             byte[] bytes = new byte[length];
             stream.read(bytes);
+
             parseRegister(tokens, bytes);
         }
         else if(tokens[0].equals("matcher")) {
@@ -143,7 +145,7 @@ public class Tjener {
 
     private void respondToClient(byte[] bilde) throws IOException {
         DataOutputStream out = new DataOutputStream(connectedSocket.getOutputStream());
-        out.write(bilde.length);
+        out.writeUTF("" + bilde.length);
         out.write(bilde);
     }
 

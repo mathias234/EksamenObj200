@@ -26,8 +26,8 @@ public class Klient {
         socket = new Socket(ipAddress, port);
 
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-        out.writeUTF(msg);
-        out.write(bilde.length);
+        out.writeUTF(msg+ "!" + bilde.length);
+
         out.write(bilde);
     }
 
@@ -45,7 +45,7 @@ public class Klient {
 
     public static byte[] receiveBilde() throws IOException {
         DataInputStream in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-        int length = in.readInt();
+        int length = Integer.parseInt(in.readUTF());
         byte[] bytes = new byte[length];
         socket.close();
         return bytes;
