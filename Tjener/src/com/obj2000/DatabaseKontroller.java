@@ -134,7 +134,7 @@ public class DatabaseKontroller {
      */
     public ArrayList<String> hvemHarInfoOmMeg(String id) {
         ArrayList<String> resultater = new ArrayList<>();
-        String sql = " SELECT navn, alder, bosted FROM bruker AS b, logg AS l \n"
+        String sql = " SELECT bNr, navn, alder, bosted FROM bruker AS b, logg AS l \n"
                 + " WHERE l.infoFraBruker_id = '" + id
                 + "' AND bNr = l.infoTilBruker_id";
 
@@ -144,8 +144,9 @@ public class DatabaseKontroller {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                String data = rs.getString("navn") + " "
-                        + rs.getString("alder") + " "
+                String data = rs.getString("bNr") + "!"
+                        + rs.getString("navn") + "!"
+                        + rs.getString("alder") + "!"
                         + rs.getString("bosted");
                 resultater.add(data);
             }

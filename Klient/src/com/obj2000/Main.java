@@ -52,9 +52,6 @@ public class Main extends Application {
             }
         });
 
-        hovedScene.bt2.setOnAction(e -> vindu.setScene(besøkendePane.getScene()));
-
-
         hovedScene.matchPane.oppdaterBtn.setOnAction(e -> {
             try {
                 String fraAlder = "" + (int)hovedScene.mkp.slider.getValue();
@@ -79,8 +76,19 @@ public class Main extends Application {
             }
         });
 
-        vindu.setTitle("NettMatch");
+        hovedScene.besøkendePane.oppdaterBtn.setOnAction(e -> {
+            try {
+                klient.sendMessage("vislogg!" + minId);
+                String msg = klient.receiveMessage();
+                String[] loggData = msg.split("#");
+                hovedScene.besøkendePane.visResultater(loggData);
+            }
+            catch (IOException ex) {
+                System.out.println("Oppdatering feilet\n" + ex);
+            }
+        });
 
+        vindu.setTitle("NettMatch");
 
         if(idFile.exists()) {
             Scanner idScanner = new Scanner(idFile);
@@ -124,7 +132,6 @@ public class Main extends Application {
         klient.sendMessage("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf);
         minId = klient.receiveMessage();
     }
-
 
     public static void main(String[] args) {
         launch(args);

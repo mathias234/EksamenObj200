@@ -49,6 +49,9 @@ public class Tjener {
         else if(tokens[0].equals("sjekkid")) {
             parseSjekkId(tokens);
         }
+        else if(tokens[0].equals("vislogg")) {
+            parseLogg(tokens);
+        }
     }
 
     private void parseRegister(String[] argumenter) throws IOException {
@@ -97,6 +100,20 @@ public class Tjener {
             respondToClient("0");
         else
             respondToClient("1");
+    }
+
+    private void parseLogg(String[] argumenter) throws IOException {
+        String fraBrukerId = argumenter[1];
+        ArrayList<String> brukereSomHarInfo = dbKontroller.hvemHarInfoOmMeg(fraBrukerId);
+
+        String ut = "";
+        for(String bruker : brukereSomHarInfo) {
+            ut += bruker + "#";
+        }
+
+        System.out.println(ut);
+
+        respondToClient(ut);
     }
 
     private void respondToClient(String msg) throws IOException {

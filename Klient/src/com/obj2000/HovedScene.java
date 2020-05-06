@@ -27,6 +27,7 @@ public class HovedScene {
 
     MatchPane matchPane = new MatchPane();
     MatchKriteriePane mkp = new MatchKriteriePane();
+    BesøkendePane besøkendePane = new BesøkendePane();
 
     public Scene getScene() {
         ImageView lugo = new ImageView(image);
@@ -44,7 +45,7 @@ public class HovedScene {
 
 
         bt3.setOnAction(e -> {bp.setCenter(mkp);});
-        bt2.setOnAction(event -> {bp.setCenter(new BesøkendePane());});
+        bt2.setOnAction(event -> {bp.setCenter(besøkendePane);});
         bt1.setOnAction(event -> {bp.setCenter(matchPane);});
 
 
