@@ -12,6 +12,10 @@ public class Tjener {
     private ServerSocket server;
     private Socket connectedSocket;
 
+    /**
+     * Setter opp tjeneren vill sitte og vente på klienter
+     * @param port
+     */
     public Tjener(int port) {
         try {
             dbKontroller = new DatabaseKontroller("jdbc:sqlite:C:/sqlite3/database.db");
@@ -205,5 +209,4 @@ public class Tjener {
 
         return bruker;
     }
-
 }

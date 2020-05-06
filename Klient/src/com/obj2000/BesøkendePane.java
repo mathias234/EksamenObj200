@@ -27,6 +27,9 @@ public class BesøkendePane extends BorderPane {
         setCenter(sPane);
     }
 
+    /** Metode som vil oppdatere resultatene
+     * @param data en liste men strings som beskriver brukeren, eksempel [dadd090e-27f7-46d0-a742-4213c417bb1e!TestBruker3!22!Kongsberg]
+     */
     public void visResultater(String[] data) {
         String id;
         String alder;
@@ -36,8 +39,8 @@ public class BesøkendePane extends BorderPane {
 
         resultaterVBox.getChildren().clear();
 
-        for (int i = 0; i < data.length; i++) {
-            String[] matchData = data[i].split("!");
+        for (String bruker : data) {
+            String[] matchData = bruker.split("!");
             id = matchData[0];
             navn = matchData[1];
             alder = matchData[2];

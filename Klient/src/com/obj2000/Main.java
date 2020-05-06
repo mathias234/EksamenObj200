@@ -19,12 +19,14 @@ public class Main extends Application {
     private Stage vindu;
     private Scene scene1;
 
+    private RegisteringsPane registeringsPane;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         vindu = primaryStage;
         klient = new Klient("127.0.0.1", 5000);
 
-        RegisteringsPane registeringsPane = new RegisteringsPane();
+        registeringsPane = new RegisteringsPane();
         HovedScene hovedScene = new HovedScene();
         BesøkendePane besøkendePane = new BesøkendePane();
 
@@ -34,7 +36,7 @@ public class Main extends Application {
 
         registeringsPane.registrer.setOnAction(e -> {
             try {
-                register(registeringsPane);
+                register();
 
                 if(!idFile.exists()) {
                     if(!idFile.createNewFile()) {
@@ -119,15 +121,19 @@ public class Main extends Application {
         vindu.show();
     }
 
-    private void register(RegisteringsPane pane) throws IOException {
-        String navn = pane.txtNavn.getText();
+    /**
+     * Denne metoden vil sende registrerings request til tjeneren
+     * @throws IOException
+     */
+    private void register() throws IOException {
+        String navn = registeringsPane.txtNavn.getText();
         String kjønn = "";
-        if(pane.kjønnToggleGroup.getSelectedToggle() != null)
-            kjønn = (String)pane.kjønnToggleGroup.getSelectedToggle().getUserData();
-        String alder = pane.txtAlder.getText();
-        String interesser = pane.txtInteresser.getText();
-        String bosted = pane.txtBosted.getText();
-        String tlf = pane.txtTlf.getText();
+        if(registeringsPane.kjønnToggleGroup.getSelectedToggle() != null)
+            kjønn = (String)registeringsPane.kjønnToggleGroup.getSelectedToggle().getUserData();
+        String alder = registeringsPane.txtAlder.getText();
+        String interesser = registeringsPane.txtInteresser.getText();
+        String bosted = registeringsPane.txtBosted.getText();
+        String tlf = registeringsPane.txtTlf.getText();
 
         klient.sendMessage("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf);
         minId = klient.receiveMessage();

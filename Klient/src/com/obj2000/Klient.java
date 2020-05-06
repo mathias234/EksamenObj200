@@ -9,12 +9,17 @@ public class Klient {
 
     private Socket socket;
 
-    // constructor to put ip address and port
     public Klient(String address, int port) {
         this.address = address;
         this.port = port;
     }
 
+    /**
+     * Sender en melding til tjeneren, bruk "receiveMessage()" for å se svaret
+     * @param message
+     * @throws UnknownHostException
+     * @throws IOException
+     */
     public void sendMessage(String message) throws UnknownHostException, IOException {
         socket = new Socket(address, port);
 
@@ -22,6 +27,11 @@ public class Klient {
         out.writeUTF(message);
     }
 
+    /**
+     * Sjekker om tjeneren svarte på den siste "sendMessage"
+     * @return
+     * @throws IOException
+     */
     public String receiveMessage() throws IOException {
         DataInputStream in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
         String message = in.readUTF();
