@@ -47,6 +47,7 @@ public class Klient {
         DataInputStream in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
         int length = Integer.parseInt(in.readUTF());
         byte[] bytes = new byte[length];
+        in.read(bytes);
         socket.close();
         return bytes;
     }

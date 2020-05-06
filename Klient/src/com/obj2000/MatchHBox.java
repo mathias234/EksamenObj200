@@ -77,6 +77,7 @@ public class MatchHBox extends HBox {
             Klient.sendMessage("hentBilde!" + minId);
 
             byte[] data = Klient.receiveBilde();
+
             Image img = new Image(new ByteArrayInputStream(data));
             profilBilde = new ImageView(img);
         } catch (IOException e) {
