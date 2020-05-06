@@ -55,8 +55,8 @@ public class MatchKriteriePane extends GridPane {
         });
 
         setAlignment(Pos.TOP_CENTER);
-        setHgap(10);//Lager litt mellomrom rundt tingene, så de ikke er
-        setVgap(10);//klin på hverandre
+        setHgap(10);//Lager litt mellomrom rundt tingene, sa de ikke er
+        setVgap(10);//klin pa hverandre
         setPadding(new Insets(20,20,20,20));
         slider.setMaxWidth(180);
         slider.setShowTickLabels(true);

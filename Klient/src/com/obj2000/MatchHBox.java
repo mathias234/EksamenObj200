@@ -41,7 +41,7 @@ public class MatchHBox extends HBox {
         setStyle("-fx-background-color: #E8E8E8;" + "-fx-border-style: solid inside;" + "-fx-font-size: 15px;");
         setAlignment(Pos.CENTER);
         setPadding(new Insets(25, 12, 25, 150));
-        visMatch = new Button("Få detaljer");
+        visMatch = new Button("Fa detaljer");
         visMatch.setOnAction(event -> {visMatchInfo();});
         getChildren().addAll(lbKjonn,lbAlder, visMatch);
     }

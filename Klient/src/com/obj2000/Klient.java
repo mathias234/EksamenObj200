@@ -10,7 +10,7 @@ public class Klient {
     private static Socket socket;
 
     /**
-     * Sender en melding til tjeneren, bruk "receiveMessage()" for å se svaret
+     * Sender en melding til tjeneren, bruk "receiveMessage()" for a se svaret
      * @param message
      * @throws UnknownHostException
      * @throws IOException
@@ -32,7 +32,7 @@ public class Klient {
     }
 
     /**
-     * Sjekker om tjeneren svarte på den siste "sendMessage"
+     * Sjekker om tjeneren svarte pa den siste "sendMessage"
      * @return
      * @throws IOException
      */

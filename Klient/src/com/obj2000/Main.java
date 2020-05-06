@@ -71,14 +71,14 @@ public class Main extends Application {
             System.out.println(svar);
 
             if(svar.equals("1")) {
-                // Åpne hoved scenen
+                // apne hoved scenen
                 vindu.setScene(hovedScene.getScene());
             }
             else {
-                // Iden finnes ikke, så brukeren må lage en ny
+                // Iden finnes ikke, sa brukeren ma lage en ny
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Lagret bruker finnes ikke i databasen");
-                alert.setContentText("Lagret bruker finnes ikke i databasen, du må lage en ny");
+                alert.setContentText("Lagret bruker finnes ikke i databasen, du ma lage en ny");
                 alert.showAndWait();
                 vindu.setScene(scene1);
             }
