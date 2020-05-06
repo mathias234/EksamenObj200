@@ -5,7 +5,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
@@ -23,6 +27,7 @@ public class MatchHBox extends HBox {
     String matchId;
     Button visMatch;
     Node foreldreNode;
+    ImageView profilBilde;
 
     public MatchHBox(String id, String alder, String kjønn, String interesser, String bosted, Node foreldreNode){
 
@@ -49,8 +54,9 @@ public class MatchHBox extends HBox {
             Klient.sendMessage("hentNavnTlf!" + matchId);
             String melding = Klient.receiveMessage();
             String[] data = melding.split("!");
-            MatchPopUp pop = new MatchPopUp(data[0], data[1], kjønn, alder, interesser, bosted);
+            MatchPopUp pop = new MatchPopUp(profilBilde, data[0], data[1], kjønn, alder, interesser, bosted);
             pop.show(foreldreNode, 970, 94);
+            hentBilde();
             logg();
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,6 +66,19 @@ public class MatchHBox extends HBox {
     public void logg(){
         try{
             Klient.sendMessage("takontakt!" + minId + "!" + matchId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void hentBilde(){
+        profilBilde = null;
+        try{
+            Klient.sendMessage("hentBilde!" + minId);
+
+            byte[] data = Klient.receiveBilde();
+            Image img = new Image(new ByteArrayInputStream(data));
+            profilBilde = new ImageView(img);
         } catch (IOException e) {
             e.printStackTrace();
         }

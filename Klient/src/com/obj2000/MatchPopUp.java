@@ -15,14 +15,22 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.net.UnknownHostException;
+
+import static com.obj2000.Main.minId;
+
 public class MatchPopUp extends Popup {
     String navn, tlf, kjønn, alder, interesser, bosted;
     Label lbAlder = new Label("Alder:"), lbBosted = new Label("Bosted:"), lbInteresser = new Label("Interesser:"), lbNavn = new Label("Navn:"), lbTelefon = new Label("Telefon:");
-    Button btLukk = new Button("Lukk vindu");
+    Button btLukk = new Button("X");
     TextField tfAlder = new TextField(), tfBosted = new TextField(), tfInteresser = new TextField(), tfNavn = new TextField(), tfTelefon = new TextField();
-    HBox hbox = new HBox();
+    HBox hbox = new HBox(5);
+    ImageView profilbilde;
 
-    public MatchPopUp(String navn, String tlf, String kjønn, String alder, String interesser, String bosted) {
+    public MatchPopUp(ImageView profilbilde, String navn, String tlf, String kjønn, String alder, String interesser, String bosted) {
+        this.profilbilde = profilbilde;
         this.navn = navn;
         this.tlf = tlf;
         this.kjønn = kjønn;
@@ -55,6 +63,7 @@ public class MatchPopUp extends Popup {
         tfTelefon.setText(tlf);
         tfTelefon.setDisable(true);
 
+        gp.add(profilbilde,0,1,2,1);
         gp.add(lbNavn, 0, 1);
         gp.add(tfNavn, 1, 1);
         gp.add(lbAlder, 0, 2);
@@ -72,8 +81,10 @@ public class MatchPopUp extends Popup {
         gp.setVgap(10);
         gp.setPadding(new Insets(0, 20, 10, 10));
 
+        hbox.getChildren().add(btLukk);
+        hbox.setAlignment(Pos.TOP_RIGHT);
         bp.setCenter(gp);
-        bp.setTop(btLukk);
+        bp.setTop(hbox);
 
         return bp;
     }

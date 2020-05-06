@@ -111,8 +111,6 @@ public class Tjener {
         String tilBrukerId = argumenter[2];
 
         dbKontroller.loggDataForespørsel(fraBrukerId, tilBrukerId);
-
-        System.out.println("Logget i DB");
     }
 
     private void parseSjekkId(String[] argumenter) throws IOException {
