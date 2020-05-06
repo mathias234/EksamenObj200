@@ -17,7 +17,6 @@ public class Main extends Application {
     private Stage vindu;
     private Scene scene1;
 
-    private RegisteringsPane registeringsPane;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -25,7 +24,7 @@ public class Main extends Application {
         Klient.setIp("127.0.0.1");
         Klient.setPort(5000);
 
-        registeringsPane = new RegisteringsPane();
+        RegisteringsPane registeringsPane = new RegisteringsPane();
         HovedScene hovedScene = new HovedScene();
         BesøkendePane besøkendePane = new BesøkendePane();
 
@@ -51,32 +50,6 @@ public class Main extends Application {
                 System.out.println("Feil i registrering, prøv igjen\n"+ex);
             }
         });
-
-        hovedScene.matchPane.oppdaterBtn.setOnAction(e -> {
-            try {
-                String fraAlder = "" + (int)hovedScene.mkp.slider.getValue();
-                String tilAlder = "" + (int)hovedScene.mkp.slider2.getValue();
-
-                String kjønn = "mann";
-                if(hovedScene.mkp.kjønnToggleGroup.getSelectedToggle() != null)
-                    kjønn = (String)hovedScene.mkp.kjønnToggleGroup.getSelectedToggle().getUserData();
-
-                Klient.sendMessage("matcher!" + minId + "!" +
-                        fraAlder + "!" +
-                        tilAlder + "!" +
-                        kjønn);
-
-                String msg = Klient.receiveMessage();
-                System.out.println(msg);
-                String[] matchData = msg.split("#");
-                System.out.println(Arrays.toString(matchData));
-                hovedScene.matchPane.visMatcher(matchData);
-            } catch(IOException ex) {
-                System.out.println("Oppdatering feilet\n"+ex);
-            }
-        });
-
-
 
         vindu.setTitle("NettMatch");
         vindu.setResizable(false);

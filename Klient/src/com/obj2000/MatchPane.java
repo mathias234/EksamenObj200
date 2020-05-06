@@ -10,6 +10,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 public class MatchPane extends BorderPane {
     Button oppdaterBtn;
     HBox antMatch;
@@ -19,7 +22,7 @@ public class MatchPane extends BorderPane {
     ScrollPane sPane;
     MatchHBox boks;
 
-    public MatchPane(){
+    public MatchPane(HovedScene hovedScene){
         txt = new TextField("10");
         oppdaterBtn = new Button("Oppdater");
         mtch = new Text("Antall matcher: ");
@@ -36,6 +39,30 @@ public class MatchPane extends BorderPane {
         antMatch.setStyle("-fx-border-color: black;-fx-border-width: 0 0 3 0;");
         antMatch.getChildren().addAll(mtch, txt, oppdaterBtn);
         setTop(antMatch);
+
+        oppdaterBtn.setOnAction(e -> {
+            try {
+                String fraAlder = "" + (int)hovedScene.mkp.slider.getValue();
+                String tilAlder = "" + (int)hovedScene.mkp.slider2.getValue();
+
+                String kjønn = "mann";
+                if(hovedScene.mkp.kjønnToggleGroup.getSelectedToggle() != null)
+                    kjønn = (String)hovedScene.mkp.kjønnToggleGroup.getSelectedToggle().getUserData();
+
+                Klient.sendMessage("matcher!" + Main.minId + "!" +
+                        fraAlder + "!" +
+                        tilAlder + "!" +
+                        kjønn);
+
+                String msg = Klient.receiveMessage();
+                System.out.println(msg);
+                String[] matchData = msg.split("#");
+                System.out.println(Arrays.toString(matchData));
+                hovedScene.matchPane.visMatcher(matchData);
+            } catch(IOException ex) {
+                System.out.println("Oppdatering feilet\n"+ex);
+            }
+        });
     }
 
     public void visMatcher(String[] data){

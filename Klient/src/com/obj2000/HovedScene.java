@@ -25,7 +25,7 @@ public class HovedScene {
     Image image  = new Image(getClass().getResourceAsStream(
             "NettMatch3.png"));
 
-    MatchPane matchPane = new MatchPane();
+    MatchPane matchPane = new MatchPane(this);
     MatchKriteriePane mkp = new MatchKriteriePane();
     BesøkendePane besøkendePane = new BesøkendePane();
 
