@@ -22,7 +22,7 @@ public class MatchPane extends BorderPane {
     MatchHBox boks;
 
     public MatchPane(HovedScene hovedScene){
-        oppdaterBtn = new Button("Oppdater");
+        oppdaterBtn = new Button("Vis matcher");
         container = new VBox(5);
         sPane = new ScrollPane();
         sPane.setContent(container);
@@ -37,6 +37,7 @@ public class MatchPane extends BorderPane {
         setTop(antMatch);
 
         oppdaterBtn.setOnAction(e -> {
+            container.getChildren().clear();
             try {
                 String fraAlder = "" + (int)hovedScene.mkp.slider.getValue();
                 String tilAlder = "" + (int)hovedScene.mkp.slider2.getValue();

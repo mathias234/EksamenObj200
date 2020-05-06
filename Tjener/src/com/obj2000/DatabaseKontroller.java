@@ -194,15 +194,17 @@ public class DatabaseKontroller {
      * @param fraAlder //laveste alder
      * @param tilAlder // høyeste alder
      * @param kjønn // kjønn (mann eller kvinne)
+     * @param brukerId // brukeren sin id for å ikke returnere brukeren som skal ha matcher
      * @return // ArrayList med resultater
      */
-    public ArrayList<String> finnMatcher(String fraAlder, String tilAlder, String kjønn){
+    public ArrayList<String> finnMatcher(String fraAlder, String tilAlder, String kjønn, String brukerId){
         int min = Integer.parseInt(fraAlder);
         int max = Integer.parseInt(tilAlder);
         ArrayList<String> matcher = new ArrayList<>();
         String sql =  "SELECT * FROM bruker \n"
                     + "WHERE (alder BETWEEN " + min + " AND " + max + ")"
-                    + "AND kjønn = '" + kjønn + "'";
+                    + "AND kjønn = '" + kjønn + "'"
+                    + "AND bNr NOT LIKE '" + brukerId + "'";
 
         try {
             conn = DriverManager.getConnection(this.url);

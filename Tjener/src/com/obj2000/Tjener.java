@@ -103,7 +103,7 @@ public class Tjener {
         String kjønn = argumenter[4];
 
 
-        ArrayList<String> data = dbKontroller.finnMatcher(fraAlder, tilAlder, kjønn);
+        ArrayList<String> data = dbKontroller.finnMatcher(fraAlder, tilAlder, kjønn, fraBrukerId);
         String tilKlient = finnBesteMatcher(data, fraBrukerId);
         respondToClient(tilKlient);
     }
