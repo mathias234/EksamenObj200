@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main extends Application {
-    private Klient klient;
     private String minId;
 
     private Stage vindu;
@@ -24,7 +23,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         vindu = primaryStage;
-        klient = new Klient("127.0.0.1", 5000);
+        Klient.setIp("127.0.0.1");
+        Klient.setPort(5000);
 
         registeringsPane = new RegisteringsPane();
         HovedScene hovedScene = new HovedScene();
@@ -63,12 +63,12 @@ public class Main extends Application {
                 if(hovedScene.mkp.kjønnToggleGroup.getSelectedToggle() != null)
                     kjønn = (String)hovedScene.mkp.kjønnToggleGroup.getSelectedToggle().getUserData();
 
-                klient.sendMessage("matcher!" + minId + "!" +
+                Klient.sendMessage("matcher!" + minId + "!" +
                         fraAlder + "!" +
                         tilAlder + "!" +
                         kjønn);
 
-                String msg = klient.receiveMessage();
+                String msg = Klient.receiveMessage();
                 System.out.println(msg);
                 String[] matchData = msg.split("#");
                 System.out.println(Arrays.toString(matchData));
@@ -80,8 +80,8 @@ public class Main extends Application {
 
         hovedScene.besøkendePane.oppdaterBtn.setOnAction(e -> {
             try {
-                klient.sendMessage("vislogg!" + minId);
-                String msg = klient.receiveMessage();
+                Klient.sendMessage("vislogg!" + minId);
+                String msg = Klient.receiveMessage();
                 String[] loggData = msg.split("#");
                 hovedScene.besøkendePane.visResultater(loggData);
             }
@@ -99,9 +99,9 @@ public class Main extends Application {
             }
 
             // Spør serveren om id er valid
-            klient.sendMessage("sjekkid!" + minId);
+            Klient.sendMessage("sjekkid!" + minId);
 
-            if(klient.receiveMessage().equals("1")) {
+            if(Klient.receiveMessage().equals("1")) {
                 // Åpne hoved scenen
                 vindu.setScene(hovedScene.getScene());
             }
@@ -135,8 +135,8 @@ public class Main extends Application {
         String bosted = registeringsPane.txtBosted.getText();
         String tlf = registeringsPane.txtTlf.getText();
 
-        klient.sendMessage("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf);
-        minId = klient.receiveMessage();
+        Klient.sendMessage("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf);
+        minId = Klient.receiveMessage();
     }
 
     public static void main(String[] args) {
