@@ -19,12 +19,14 @@ public class MatchHBox extends HBox {
     Button visMatch;
 
     public MatchHBox(String id, String alder, String kjønn, String interesser, String bosted){
+
         super(20);
         matchId = id;
         this.interesser = interesser;
         this.bosted = bosted;
         this.kjønn = kjønn;
         this.alder = alder;
+
         lbKjønn = new Label(kjønn);
         lbAlder = new Label(alder);
         setStyle("-fx-background-color: #E8E8E8;" + "-fx-border-style: solid inside;" + "-fx-font-size: 15px;");
