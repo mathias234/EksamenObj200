@@ -36,13 +36,15 @@ public class Main extends Application {
             try {
                 register(registeringsPane);
 
-                idFile.delete();
-
-                if(idFile.createNewFile()) {
-                    FileWriter writer = new FileWriter(idFile);
-                    writer.write(minId);
-                    writer.close();
+                if(!idFile.exists()) {
+                    if(!idFile.createNewFile()) {
+                        System.out.println("Failed to create new file");
+                    }
                 }
+
+                FileWriter writer = new FileWriter(idFile);
+                writer.write(minId);
+                writer.close();
 
                 vindu.setScene(hovedScene.getScene());
             } catch (IOException ex) {
