@@ -13,11 +13,11 @@ import java.io.IOException;
 import static com.obj2000.Main.minId;
 
 public class MatchHBox extends HBox {
-    Label lbKjønn = null;
+    Label lbKjonn = null;
     Label lbAlder = null;
     String navn;
     String tlf;
-    String kjønn;
+    String kjonn;
     String alder;
     String interesser;
     String bosted;
@@ -26,24 +26,24 @@ public class MatchHBox extends HBox {
     Node foreldreNode;
     ImageView profilBilde;
 
-    public MatchHBox(String id, String alder, String kjønn, String interesser, String bosted, Node foreldreNode){
+    public MatchHBox(String id, String alder, String kjonn, String interesser, String bosted, Node foreldreNode){
 
         super(20);
         matchId = id;
         this.foreldreNode = foreldreNode;
         this.interesser = interesser;
         this.bosted = bosted;
-        this.kjønn = kjønn;
+        this.kjonn = kjonn;
         this.alder = alder;
 
-        lbKjønn = new Label(kjønn);
+        lbKjonn = new Label(kjonn);
         lbAlder = new Label(alder);
         setStyle("-fx-background-color: #E8E8E8;" + "-fx-border-style: solid inside;" + "-fx-font-size: 15px;");
         setAlignment(Pos.CENTER);
         setPadding(new Insets(25, 12, 25, 150));
         visMatch = new Button("Få detaljer");
         visMatch.setOnAction(event -> {visMatchInfo();});
-        getChildren().addAll(lbKjønn,lbAlder, visMatch);
+        getChildren().addAll(lbKjonn,lbAlder, visMatch);
     }
 
     public void visMatchInfo(){
@@ -52,7 +52,7 @@ public class MatchHBox extends HBox {
             String melding = Klient.receiveMessage();
             String[] data = melding.split("!");
             hentBilde();
-            MatchPopUp pop = new MatchPopUp(profilBilde, data[0], data[1], kjønn, alder, interesser, bosted);
+            MatchPopUp pop = new MatchPopUp(profilBilde, data[0], data[1], kjonn, alder, interesser, bosted);
             pop.show(foreldreNode, 970, 94);
             logg();
         } catch (IOException e) {

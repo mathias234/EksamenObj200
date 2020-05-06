@@ -30,7 +30,7 @@ public class Main extends Application {
 
         RegisteringsPane registeringsPane = new RegisteringsPane();
         HovedScene hovedScene = new HovedScene();
-        BesøkendePane besøkendePane = new BesøkendePane();
+        BesokendePane besokendePane = new BesokendePane();
 
         scene1 = new Scene(registeringsPane, 400, 500);
 
@@ -51,7 +51,7 @@ public class Main extends Application {
                 writer.close();
                 vindu.setScene(hovedScene.getScene());
             } catch (IOException ex) {
-                System.out.println("Feil i registrering, prøv igjen\n"+ex);
+                System.out.println("Feil i registrering, prov igjen\n"+ex);
             }
         });
 
@@ -64,7 +64,7 @@ public class Main extends Application {
                 minId = idScanner.nextLine();
             }
 
-            // Spør serveren om id er valid
+            // Spor serveren om id er valid
             Klient.sendMessage("sjekkid!" + minId);
 
             String svar = Klient.receiveMessage();

@@ -19,8 +19,8 @@ import javafx.scene.text.Text;
 public class MatchKriteriePane extends GridPane {
 
 
-    Label txt = new Label(" Kjønn:  "), txt3 = new Label("   Laveste ønsket  alder:  "),
-    txt4 = new Label("   Høyeste ønsket alder:  "),
+    Label txt = new Label(" Kjonn:  "), txt3 = new Label("   Laveste onsket  alder:  "),
+    txt4 = new Label("   Hoyeste onsket alder:  "),
     txtOppe = new Label(), txtNede = new Label();
     Text txt2 = new Text("  Finn en match");
     Slider slider = new Slider(18, 80, 1.0),
@@ -29,7 +29,7 @@ public class MatchKriteriePane extends GridPane {
     RadioButton m = new RadioButton(), d = new RadioButton();
     HBox oppe = new HBox(), nede = new HBox(), kjonn = new HBox();
 
-    ToggleGroup kjønnToggleGroup;
+    ToggleGroup kjonnToggleGroup;
 
     public MatchKriteriePane() {
         opprettPane();
@@ -71,9 +71,9 @@ public class MatchKriteriePane extends GridPane {
         slider2.setMajorTickUnit(10f);
 
         //finn.setMaxSize(250, 100);
-        kjønnToggleGroup = new ToggleGroup();
-        m.setToggleGroup(kjønnToggleGroup);
-        d.setToggleGroup(kjønnToggleGroup);
+        kjonnToggleGroup = new ToggleGroup();
+        m.setToggleGroup(kjonnToggleGroup);
+        d.setToggleGroup(kjonnToggleGroup);
         m.setUserData("mann");
         d.setUserData("dame");
 

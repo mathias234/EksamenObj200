@@ -13,14 +13,14 @@ public class DatabaseKontroller {
     }
 
     /**
-     * Metode for å lage nye tabeller i DB, samt opprette en om det ikke finnes en fra før
+     * Metode for å lage nye tabeller i DB, samt opprette en om det ikke finnes en fra for
      */
     private void opprettDB() {
 
         String sql1 = "CREATE TABLE IF NOT EXISTS bruker ( \n"
                 + "    bNr varchar(36) PRIMARY KEY NOT NULL, \n"
                 + "    navn varchar(25) NOT NULL, \n"
-                + "    kjønn varchar(6) NOT NULL, \n"
+                + "    kjonn varchar(6) NOT NULL, \n"
                 + "    alder INTEGER NOT NULL, \n"
                 + "    interesser varchar(150) NOT NULL, \n"
                 + "    bosted varchar(50) NOT NULL, \n"
@@ -59,21 +59,21 @@ public class DatabaseKontroller {
     /** metode for å sette inn ny bruker i DB
      * @param bNr // unik Id
      * @param navn // bruker navn
-     * @param kjønn // bruker sitt kjønn
+     * @param kjonn // bruker sitt kjonn
      * @param alder // bruker sin alder
      * @param interesser // bruker sin adresse
      * @param bosted // bruker sitt bosted
      * @param tlf // bruker sitt telefonnummer
      */
-    public void opprettBruker(String bNr, String navn, String kjønn, String alder, String interesser, String bosted, String tlf, byte[] bildeBlob) {
-        String sql = "INSERT INTO bruker(bNr, navn, kjønn, alder, interesser, bosted, tlf, bilde) \n"
+    public void opprettBruker(String bNr, String navn, String kjonn, String alder, String interesser, String bosted, String tlf, byte[] bildeBlob) {
+        String sql = "INSERT INTO bruker(bNr, navn, kjonn, alder, interesser, bosted, tlf, bilde) \n"
                 + "VALUES(?,?,?,?,?,?,?,?);";
         try {
             conn = DriverManager.getConnection(this.url);
             PreparedStatement  stmt = conn.prepareStatement(sql);
             stmt.setString(1, bNr);
             stmt.setString(2, navn);
-            stmt.setString(3, kjønn);
+            stmt.setString(3, kjonn);
             stmt.setString(4, alder);
             stmt.setString(5, interesser);
             stmt.setString(6, bosted);
@@ -113,9 +113,9 @@ public class DatabaseKontroller {
 
     /**
      * @param fraBruker // bruker som det blir gitt data om
-     * @param tilBruker // bruker som spørr etter data
+     * @param tilBruker // bruker som sporr etter data
      */
-    public void loggDataForespørsel(String fraBruker, String tilBruker){
+    public void loggDataForesporsel(String fraBruker, String tilBruker){
         String sql = "INSERT INTO logg(infoFraBruker_id, infoTilBruker_id) \n"
                 + "VALUES('" + fraBruker + "','" + tilBruker + "');";
 
@@ -124,7 +124,7 @@ public class DatabaseKontroller {
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
 
-            System.out.println("logget forespørsel om informasjon");
+            System.out.println("logget foresporsel om informasjon");
             conn.close();
         } catch (SQLException e) {
             e.getMessage();
@@ -147,7 +147,7 @@ public class DatabaseKontroller {
 
                 while (rs.next()) {
                         data = rs.getString("bNr") + "!"
-                            + rs.getString("kjønn") + "!"
+                            + rs.getString("kjonn") + "!"
                             + rs.getString("alder") + "!"
                             + rs.getString("interesser") + "!"
                             + rs.getString("bosted");
@@ -161,7 +161,7 @@ public class DatabaseKontroller {
         }
     
     /**
-     * @param id // id'en til brukeren som ønsker å vite hvem som har informasjon om vedkommende
+     * @param id // id'en til brukeren som onsker å vite hvem som har informasjon om vedkommende
      * @return // Arraylist med resultater
      */
     public ArrayList<String> hvemHarInfoOmMeg(String id) {
@@ -192,18 +192,18 @@ public class DatabaseKontroller {
 
     /**
      * @param fraAlder //laveste alder
-     * @param tilAlder // høyeste alder
-     * @param kjønn // kjønn (mann eller kvinne)
+     * @param tilAlder // hoyeste alder
+     * @param kjonn // kjonn (mann eller kvinne)
      * @param brukerId // brukeren sin id for å ikke returnere brukeren som skal ha matcher
      * @return // ArrayList med resultater
      */
-    public ArrayList<String> finnMatcher(String fraAlder, String tilAlder, String kjønn, String brukerId){
+    public ArrayList<String> finnMatcher(String fraAlder, String tilAlder, String kjonn, String brukerId){
         int min = Integer.parseInt(fraAlder);
         int max = Integer.parseInt(tilAlder);
         ArrayList<String> matcher = new ArrayList<>();
         String sql =  "SELECT * FROM bruker \n"
                     + "WHERE (alder BETWEEN " + min + " AND " + max + ")"
-                    + "AND kjønn = '" + kjønn + "'"
+                    + "AND kjonn = '" + kjonn + "'"
                     + "AND bNr NOT LIKE '" + brukerId + "'";
 
         try {
@@ -213,7 +213,7 @@ public class DatabaseKontroller {
 
             while (rs.next()) {
                 String data = rs.getString("bNr") + "!"
-                        + rs.getString("kjønn") + "!"
+                        + rs.getString("kjonn") + "!"
                         + rs.getString("alder") + "!"
                         + rs.getString("interesser") + "!"
                         + rs.getString("bosted");
@@ -271,7 +271,7 @@ public class DatabaseKontroller {
                 String data = rs.getString("navn") + " "
                         + rs.getString("alder") + " "
                         + rs.getString("bosted") + " "
-                        + rs.getString("kjønn") + " "
+                        + rs.getString("kjonn") + " "
                         + rs.getString("bNr");
                 resultater.add(data);
             }

@@ -20,7 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class RegisteringsPane extends GridPane {
-    Label navn, alder, interesser, tlf, bosted, kjønn, lbBilde;
+    Label navn, alder, interesser, tlf, bosted, kjonn, lbBilde;
     TextField txtNavn, txtAlder, txtTlf, txtBosted, tfBilde;
     RadioButton m, d;
     TextArea txtInteresser;
@@ -28,9 +28,9 @@ public class RegisteringsPane extends GridPane {
     Image image = new Image(getClass().getResourceAsStream(
             "NettMatch3.png"));
     HBox kjonn = new HBox();
-    ToggleGroup kjønnToggleGroup;
+    ToggleGroup kjonnToggleGroup;
     FileChooser velgBilde;
-    Image søk;
+    Image sok;
     byte[] bildeData;
 
     public RegisteringsPane() {
@@ -46,7 +46,7 @@ public class RegisteringsPane extends GridPane {
         interesser = new Label("Interesser: ");
         tlf = new Label("Tlf: ");
         bosted = new Label("Bosted: ");
-        kjønn = new Label("Kjønn: ");
+        kjonn = new Label("Kjonn: ");
         lbBilde = new Label("Velg bilde: ");
 
         //Styleing
@@ -55,7 +55,7 @@ public class RegisteringsPane extends GridPane {
         alder.setStyle("-fx-font-size: 12px;-fx-font-weight:bold;");
         tlf.setStyle("-fx-font-size: 12px;-fx-font-weight:bold;");
         bosted.setStyle("-fx-font-size: 12px;-fx-font-weight:bold;");
-        kjønn.setStyle("-fx-font-size: 12px;-fx-font-weight:bold;");
+        kjonn.setStyle("-fx-font-size: 12px;-fx-font-weight:bold;");
         lbBilde.setStyle("-fx-font-size: 12px;-fx-font-weight:bold;");
 
         //Text
@@ -67,16 +67,16 @@ public class RegisteringsPane extends GridPane {
         tfBilde = new TextField();
         tfBilde.setDisable(true);
 
-        søk = new Image("com/obj2000/søk.png", 17, 17, true, true);
+        sok = new Image("com/obj2000/sok.png", 17, 17, true, true);
 
         //Buttons
         m = new RadioButton();
         d = new RadioButton();
         registrer = new Button(" Registrer ");
         btBilde = new Button();
-        btBilde.setGraphic(new ImageView(søk));
+        btBilde.setGraphic(new ImageView(sok));
 
-        //kjønn box
+        //kjonn box
         kjonn.getChildren().addAll(m, d);
 
         //FileChooser
@@ -105,9 +105,9 @@ public class RegisteringsPane extends GridPane {
         txtInteresser.setMaxWidth(300);
         txtInteresser.setMaxHeight(100);
         txtInteresser.setWrapText(true);
-        kjønnToggleGroup = new ToggleGroup();
-        m.setToggleGroup(kjønnToggleGroup);
-        d.setToggleGroup(kjønnToggleGroup);
+        kjonnToggleGroup = new ToggleGroup();
+        m.setToggleGroup(kjonnToggleGroup);
+        d.setToggleGroup(kjonnToggleGroup);
 
         add(lugo, 0, 1, 2, 1);
         add(navn, 0, 2);
@@ -120,7 +120,7 @@ public class RegisteringsPane extends GridPane {
         add(txtTlf, 1, 5);
         add(interesser, 0, 6);
         add(txtInteresser, 1, 6);
-        add(kjønn, 0, 7);
+        add(kjonn, 0, 7);
         add(kjonn, 1, 7);
         add(lbBilde, 0, 8);
         add(tfBilde, 1, 8);
@@ -137,15 +137,15 @@ public class RegisteringsPane extends GridPane {
      */
     public String registrer() throws IOException {
         String navn = txtNavn.getText();
-        String kjønn = "";
-        if (kjønnToggleGroup.getSelectedToggle() != null)
-            kjønn = (String) kjønnToggleGroup.getSelectedToggle().getUserData();
+        String kjonn = "";
+        if (kjonnToggleGroup.getSelectedToggle() != null)
+            kjonn = (String) kjonnToggleGroup.getSelectedToggle().getUserData();
         String alder = txtAlder.getText();
         String interesser = txtInteresser.getText();
         String bosted = txtBosted.getText();
         String tlf = txtTlf.getText();
 
-        Klient.sendMessageMedBilde("register!" + navn + "!" + kjønn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf, bildeData);
+        Klient.sendMessageMedBilde("register!" + navn + "!" + kjonn + "!" + alder + "!" + interesser + "!" + bosted + "!" + tlf, bildeData);
 
         return Klient.receiveMessage();
     }

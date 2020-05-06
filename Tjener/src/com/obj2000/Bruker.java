@@ -4,7 +4,7 @@ public class Bruker {
 
     private String id;
     private String alder;
-    private String kjønn;
+    private String kjonn;
     private String interesser;
     private String bosted;
     private double score;
@@ -18,8 +18,8 @@ public class Bruker {
             return alder;
         }
 
-        public String getKjønn() {
-            return kjønn;
+        public String getKjonn() {
+            return kjonn;
         }
 
         public String getInteresser() {
@@ -45,8 +45,8 @@ public class Bruker {
             this.alder = alder;
         }
 
-        public void setKjønn(String kjønn) {
-            this.kjønn = kjønn;
+        public void setKjonn(String kjonn) {
+            this.kjonn = kjonn;
         }
 
         public void setInteresser(String interesser) {
@@ -65,7 +65,7 @@ public class Bruker {
     public String toString() {
         return  id + "!"
                 + alder + "!"
-                + kjønn + "!"
+                + kjonn + "!"
                 + interesser + "!"
                 + bosted + "!"
                 + score;

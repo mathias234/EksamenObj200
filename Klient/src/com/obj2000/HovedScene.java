@@ -14,8 +14,8 @@ public class HovedScene {
     BorderPane bp = new BorderPane();
 
     Pane pane = new Pane();
-    Text matcher = new Text("Matcher"), besøkende = new Text("Besøkende");
-    Button bt1 = new Button("Matcher"), bt2 = new Button("Besøkende"),
+    Text matcher = new Text("Matcher"), besokende = new Text("Besokende");
+    Button bt1 = new Button("Matcher"), bt2 = new Button("Besokende"),
             bt3 = new Button("Match-kriterier");
 
     HBox logo = new HBox();
@@ -27,7 +27,7 @@ public class HovedScene {
 
     MatchPane matchPane = new MatchPane(this);
     MatchKriteriePane mkp = new MatchKriteriePane();
-    BesøkendePane besøkendePane = new BesøkendePane();
+    BesokendePane besokendePane = new BesokendePane();
 
     public Scene getScene() {
         ImageView lugo = new ImageView(image);
@@ -45,7 +45,7 @@ public class HovedScene {
 
 
         bt3.setOnAction(e -> {bp.setCenter(mkp);});
-        bt2.setOnAction(event -> {bp.setCenter(besøkendePane);});
+        bt2.setOnAction(event -> {bp.setCenter(besokendePane);});
         bt1.setOnAction(event -> {bp.setCenter(matchPane);});
 
 

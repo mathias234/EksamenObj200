@@ -42,14 +42,14 @@ public class MatchPane extends BorderPane {
                 String fraAlder = "" + (int)hovedScene.mkp.slider.getValue();
                 String tilAlder = "" + (int)hovedScene.mkp.slider2.getValue();
 
-                String kjønn = "mann";
-                if(hovedScene.mkp.kjønnToggleGroup.getSelectedToggle() != null)
-                    kjønn = (String)hovedScene.mkp.kjønnToggleGroup.getSelectedToggle().getUserData();
+                String kjonn = "mann";
+                if(hovedScene.mkp.kjonnToggleGroup.getSelectedToggle() != null)
+                    kjonn = (String)hovedScene.mkp.kjonnToggleGroup.getSelectedToggle().getUserData();
 
                 Klient.sendMessage("matcher!" + Main.minId + "!" +
                         fraAlder + "!" +
                         tilAlder + "!" +
-                        kjønn);
+                        kjonn);
 
                 String msg = Klient.receiveMessage();
                 System.out.println(msg);
@@ -63,7 +63,7 @@ public class MatchPane extends BorderPane {
     }
 
     public void visMatcher(String[] data){
-        String kjønn;
+        String kjonn;
         String alder;
         String id;
         String interesser;
@@ -73,10 +73,10 @@ public class MatchPane extends BorderPane {
             String[] matchData = data[i].split("!");
             id = matchData[0];
             alder = matchData[1];
-            kjønn = matchData[2];
+            kjonn = matchData[2];
             interesser = matchData[3];
             bosted = matchData[4];
-            boks = new MatchHBox(id, alder, kjønn, interesser, bosted, this);
+            boks = new MatchHBox(id, alder, kjonn, interesser, bosted, this);
             container.getChildren().add(boks);
         }
     }

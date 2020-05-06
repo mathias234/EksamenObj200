@@ -86,12 +86,12 @@ public class Tjener {
         UUID uuid = UUID.randomUUID();
         String bNr = uuid.toString();
         String navn =  argumenter[1];
-        String kjønn = argumenter[2];
+        String kjonn = argumenter[2];
         String alder = argumenter[3];
         String interesser = argumenter[4];
         String bosted = argumenter[5];
         String tlf = argumenter[6];
-        dbKontroller.opprettBruker(bNr, navn, kjønn, alder, interesser, bosted, tlf, bilde);
+        dbKontroller.opprettBruker(bNr, navn, kjonn, alder, interesser, bosted, tlf, bilde);
 
         respondToClient(uuid.toString());
     }
@@ -100,10 +100,10 @@ public class Tjener {
         String fraBrukerId = argumenter[1];
         String fraAlder = argumenter[2];
         String tilAlder = argumenter[3];
-        String kjønn = argumenter[4];
+        String kjonn = argumenter[4];
 
 
-        ArrayList<String> data = dbKontroller.finnMatcher(fraAlder, tilAlder, kjønn, fraBrukerId);
+        ArrayList<String> data = dbKontroller.finnMatcher(fraAlder, tilAlder, kjonn, fraBrukerId);
         String tilKlient = finnBesteMatcher(data, fraBrukerId);
         respondToClient(tilKlient);
     }
@@ -112,7 +112,7 @@ public class Tjener {
         String fraBrukerId = argumenter[1];
         String tilBrukerId = argumenter[2];
 
-        dbKontroller.loggDataForespørsel(fraBrukerId, tilBrukerId);
+        dbKontroller.loggDataForesporsel(fraBrukerId, tilBrukerId);
     }
 
     private void parseSjekkId(String[] argumenter) throws IOException {
@@ -225,7 +225,7 @@ public class Tjener {
         String[] dataArr = brukerData.split("!");
 
         bruker.setId(dataArr[0]);
-        bruker.setKjønn(dataArr[1]);
+        bruker.setKjonn(dataArr[1]);
         bruker.setAlder(dataArr[2]);
         bruker.setInteresser(dataArr[3]);
         bruker.setBosted(dataArr[4]);

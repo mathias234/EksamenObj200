@@ -14,7 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Popup;
 
 public class MatchPopUp extends Popup {
-    String navn, tlf, kjønn, alder, interesser, bosted;
+    String navn, tlf, kjonn, alder, interesser, bosted;
     Label lbAlder = new Label("Alder:"), lbBosted = new Label("Bosted:"), lbInteresser = new Label("Interesser:"), lbNavn = new Label("Navn:"), lbTelefon = new Label("Telefon:");
     Button btLukk = new Button("X");
     TextField tfAlder = new TextField(), tfBosted = new TextField(), tfNavn = new TextField(), tfTelefon = new TextField();
@@ -24,11 +24,11 @@ public class MatchPopUp extends Popup {
     HBox bildeRamme;
     BorderPane matchCon;
 
-    public MatchPopUp(ImageView profilbilde, String navn, String tlf, String kjønn, String alder, String interesser, String bosted) {
+    public MatchPopUp(ImageView profilbilde, String navn, String tlf, String kjonn, String alder, String interesser, String bosted) {
         this.profilbilde = profilbilde;
         this.navn = navn;
         this.tlf = tlf;
-        this.kjønn = kjønn;
+        this.kjonn = kjonn;
         this.alder = alder;
         this.interesser = interesser;
         this.bosted = bosted;

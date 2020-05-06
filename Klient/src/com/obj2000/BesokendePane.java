@@ -9,12 +9,12 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
-public class BesøkendePane extends BorderPane {
+public class BesokendePane extends BorderPane {
     Button oppdaterBtn;
     VBox resultaterVBox;
 
-    public BesøkendePane() {
-        oppdaterBtn = new Button("Vis besøk");
+    public BesokendePane() {
+        oppdaterBtn = new Button("Vis besok");
 
         BorderPane loggHbox = new BorderPane();
         loggHbox.setPadding(new Insets(10, 0, 10, 0));
