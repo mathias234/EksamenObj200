@@ -39,6 +39,11 @@ public class Tjener {
         }
     }
 
+    /**
+     * Denne funkjsonen vil sjekke request typen, også sende requesten videren til parse metodene
+     * @param msg
+     * @throws IOException
+     */
     private void handleMessage(String msg) throws IOException {
         String[] tokens = msg.split("!");
         if(tokens[0].equals("register")) {
@@ -58,6 +63,11 @@ public class Tjener {
         }
     }
 
+    /**
+     * Henter ut informasjon om brukeren  (navn, kjønn, alder, interesser, bosted, telefonnr) og sender den nye ID tilbake til brukeren
+     * @param argumenter
+     * @throws IOException
+     */
     private void parseRegister(String[] argumenter) throws IOException {
         UUID uuid = UUID.randomUUID();
         String bNr = uuid.toString();

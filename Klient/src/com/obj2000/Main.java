@@ -76,17 +76,7 @@ public class Main extends Application {
             }
         });
 
-        hovedScene.besøkendePane.oppdaterBtn.setOnAction(e -> {
-            try {
-                Klient.sendMessage("vislogg!" + minId);
-                String msg = Klient.receiveMessage();
-                String[] loggData = msg.split("#");
-                hovedScene.besøkendePane.visResultater(loggData);
-            }
-            catch (IOException ex) {
-                System.out.println("Oppdatering feilet\n" + ex);
-            }
-        });
+
 
         //hovedScene.matchPane.boks.visMatch.setOnAction(event -> {
             //MatchPopUp pop = new MatchPopUp();

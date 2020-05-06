@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class BesøkendePane extends BorderPane {
     Button oppdaterBtn;
     VBox resultaterVBox;
@@ -25,6 +27,18 @@ public class BesøkendePane extends BorderPane {
         sPane.setContent(resultaterVBox);
         sPane.setFitToWidth(true);
         setCenter(sPane);
+
+        oppdaterBtn.setOnAction(e -> {
+            try {
+                Klient.sendMessage("vislogg!" + Main.minId);
+                String msg = Klient.receiveMessage();
+                String[] loggData = msg.split("#");
+                visResultater(loggData);
+            }
+            catch (IOException ex) {
+                System.out.println("Oppdatering feilet\n" + ex);
+            }
+        });
     }
 
     /** Metode som vil oppdatere resultatene
