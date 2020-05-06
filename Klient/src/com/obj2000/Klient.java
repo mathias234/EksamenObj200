@@ -11,17 +11,24 @@ public class Klient {
 
     /**
      * Sender en melding til tjeneren, bruk "receiveMessage()" for a se svaret
-     * @param message
+     * @param msg
      * @throws UnknownHostException
      * @throws IOException
      */
-    public static void sendMessage(String message) throws UnknownHostException, IOException {
+    public static void sendMessage(String msg) throws UnknownHostException, IOException {
         socket = new Socket(ipAddress, port);
 
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-        out.writeUTF(message);
+        out.writeUTF(msg);
     }
 
+    /**
+     * Sender en melding og et bilde til tjeneren
+     * @param msg meldingen som skal sendes
+     * @param bilde bilde som skal sendes
+     * @throws UnknownHostException
+     * @throws IOException
+     */
     public static void sendMessageMedBilde(String msg, byte[] bilde) throws UnknownHostException, IOException {
         socket = new Socket(ipAddress, port);
 
@@ -43,6 +50,11 @@ public class Klient {
         return message;
     }
 
+    /**
+     * Sjekker om tjeneren svartre pa den siste sendMessage, og at svarte med et bilde
+     * @return
+     * @throws IOException
+     */
     public static byte[] receiveBilde() throws IOException {
         DataInputStream in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
         int length = Integer.parseInt(in.readUTF());

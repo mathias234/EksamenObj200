@@ -30,7 +30,6 @@ public class Main extends Application {
 
         RegisteringsPane registeringsPane = new RegisteringsPane();
         HovedScene hovedScene = new HovedScene();
-        BesokendePane besokendePane = new BesokendePane();
 
         scene1 = new Scene(registeringsPane, 400, 500);
 
