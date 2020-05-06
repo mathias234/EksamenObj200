@@ -14,7 +14,7 @@ public class BesokendePane extends BorderPane {
     VBox resultaterVBox;
 
     public BesokendePane() {
-        oppdaterBtn = new Button("Vis besok");
+        oppdaterBtn = new Button("Vis besøk");
 
         BorderPane loggHbox = new BorderPane();
         loggHbox.setPadding(new Insets(10, 0, 10, 0));

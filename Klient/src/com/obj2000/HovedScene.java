@@ -14,8 +14,7 @@ public class HovedScene {
     BorderPane bp = new BorderPane();
 
     Pane pane = new Pane();
-    Text matcher = new Text("Matcher"), besokende = new Text("Besokende");
-    Button bt1 = new Button("Matcher"), bt2 = new Button("Besokende"),
+    Button bt1 = new Button("Matcher"), bt2 = new Button("Besøkende"),
             bt3 = new Button("Match-kriterier");
 
     HBox logo = new HBox();
