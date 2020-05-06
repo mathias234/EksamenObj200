@@ -54,9 +54,9 @@ public class MatchHBox extends HBox {
             Klient.sendMessage("hentNavnTlf!" + matchId);
             String melding = Klient.receiveMessage();
             String[] data = melding.split("!");
+            hentBilde();
             MatchPopUp pop = new MatchPopUp(profilBilde, data[0], data[1], kjønn, alder, interesser, bosted);
             pop.show(foreldreNode, 970, 94);
-            hentBilde();
             logg();
         } catch (IOException e) {
             e.printStackTrace();
