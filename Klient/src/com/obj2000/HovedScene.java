@@ -12,17 +12,13 @@ public class HovedScene {
 
     Scene scene;
     BorderPane bp = new BorderPane();
-
     Pane pane = new Pane();
-    Button bt1 = new Button("Matcher"), bt2 = new Button("Besøkende"),
-            bt3 = new Button("Match-kriterier");
-
+    Button bt1 = new Button("Matcher"), bt2 = new Button("Besøkende"), bt3 = new Button("Match-kriterier");
     HBox logo = new HBox();
     HBox knapper = new HBox();
     VBox top = new VBox();
 
-    Image image  = new Image(getClass().getResourceAsStream(
-            "NettMatch3.png"));
+    Image image  = new Image(getClass().getResourceAsStream("NettMatch3.png"));
 
     MatchPane matchPane = new MatchPane(this);
     MatchKriteriePane mkp = new MatchKriteriePane();

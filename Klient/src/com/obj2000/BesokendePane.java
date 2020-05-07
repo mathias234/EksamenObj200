@@ -2,10 +2,8 @@ package com.obj2000;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -45,7 +43,6 @@ public class BesokendePane extends BorderPane {
      * @param data en liste men strings som beskriver brukeren, eksempel [dadd090e-27f7-46d0-a742-4213c417bb1e!TestBruker3!22!Kongsberg]
      */
     public void visResultater(String[] data) {
-        String id;
         String alder;
         String navn;
         String bosted;
@@ -55,7 +52,6 @@ public class BesokendePane extends BorderPane {
 
         for (String bruker : data) {
             String[] matchData = bruker.split("!");
-            id = matchData[0];
             navn = matchData[1];
             alder = matchData[2];
             bosted = matchData[3];

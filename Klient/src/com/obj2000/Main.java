@@ -13,17 +13,15 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main extends Application {
-    public static String minId;
 
+    public static String minId;
     private Stage vindu;
     private Scene scene1;
-
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         vindu = primaryStage;
-        Image icon  = new Image(getClass().getResourceAsStream(
-                "index.jpg"));
+        Image icon  = new Image(getClass().getResourceAsStream("index.jpg"));
         vindu.getIcons().add(icon);
         Klient.setIp("127.0.0.1");
         Klient.setPort(5000);
